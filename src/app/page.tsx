@@ -60,18 +60,20 @@ export default function Home() {
         return () => clearTimeout(t);
     }, []);
 
-    const patternSvg = `url("data:image/svg+xml,%3Csvg width='7' height='10' viewBox='0 0 7 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='1' height='10' fill='%23F7CE76'/%3E%3Crect x='2' width='1' height='10' fill='%23F7CE76'/%3E%3Crect x='4' width='1' height='10' fill='%23F7CE76'/%3E%3Crect x='6' width='1' height='10' fill='%23F7CE76'/%3E%3Crect x='1' width='1' height='10' fill='%23BE8E2D'/%3E%3Crect x='3' width='1' height='10' fill='%23BE8E2D'/%3E%3Crect x='5' width='1' height='10' fill='%23BE8E2D'/%3E%3Cpath d='M0 4.44824H7V2.99997H0V4.44824Z' fill='%23B14328'/%3E%3Cpath d='M0.700195 5.41382H6.3002V3.96555H0.700195V5.41382Z' fill='%23B14328'/%3E%3Cpath d='M1.3999 6.62061H5.5999V5.17234H1.3999V6.62061Z' fill='%23B14328'/%3E%3Cpath d='M2.1001 7.58618H4.9001V6.13791H2.1001V7.58618Z' fill='%23B14328'/%3E%3Cpath d='M2.4502 8.79321H4.5502V7.34494H2.4502V8.79321Z' fill='%23B14328'/%3E%3Cpath d='M3.1499 10H3.8499V8.55173H3.1499V10Z' fill='%23B14328'/%3E%3C/svg%3E")`;
+    const patternSvg = `url("data:image/svg+xml,%3Csvg width='6' height='10' viewBox='0 0 6 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='1' height='10' fill='%23F7CE76'/%3E%3Crect x='2' width='1' height='10' fill='%23F7CE76'/%3E%3Crect x='4' width='1' height='10' fill='%23F7CE76'/%3E%3Crect x='1' width='1' height='10' fill='%23BE8E2D'/%3E%3Crect x='3' width='1' height='10' fill='%23BE8E2D'/%3E%3Crect x='5' width='1' height='10' fill='%23BE8E2D'/%3E%3Cpath d='M0 4.448H6V3H0V4.448Z' fill='%23B14328'/%3E%3Cpath d='M0.6 5.414H5.4V3.966H0.6V5.414Z' fill='%23B14328'/%3E%3Cpath d='M1.2 6.621H4.8V5.172H1.2V6.621Z' fill='%23B14328'/%3E%3Cpath d='M1.8 7.586H4.2V6.138H1.8V7.586Z' fill='%23B14328'/%3E%3Cpath d='M2.1 8.793H3.9V7.345H2.1V8.793Z' fill='%23B14328'/%3E%3Cpath d='M2.7 10H3.3V8.552H2.7V10Z' fill='%23B14328'/%3E%3C/svg%3E")`;
 
     return (
         <div className="flex min-h-screen items-center justify-center">
-            <div
-                className="absolute top-0 left-0 w-full z-20"
-                style={{ height: 20, backgroundImage: patternSvg, backgroundRepeat: "repeat-x", backgroundSize: "14px 20px" }}
-            />
-            <div
-                className="absolute bottom-0 left-0 w-full z-20"
-                style={{ height: 20, backgroundImage: patternSvg, backgroundRepeat: "repeat-x", backgroundSize: "14px 20px", transform: "scaleY(-1)" }}
-            />
+            <div className="absolute top-0 left-0 w-full z-20 overflow-hidden" style={{ height: 20 }}>
+                <div
+                    style={{ width: "calc(100% + 48px)", marginLeft: -24, height: 20, backgroundImage: patternSvg, backgroundRepeat: "repeat-x", backgroundSize: "12px 20px", animation: "scroll-right 3s linear infinite", willChange: "transform" }}
+                />
+            </div>
+            <div className="absolute bottom-0 left-0 w-full z-20 overflow-hidden" style={{ height: 20 }}>
+                <div
+                    style={{ width: "calc(100% + 48px)", marginLeft: -24, height: 20, backgroundImage: patternSvg, backgroundRepeat: "repeat-x", backgroundSize: "12px 20px", animation: "scroll-left 3s linear infinite", willChange: "transform" }}
+                />
+            </div>
             <main className="flex flex-col min-h-screen w-full items-center justify-center relative">
                 <img
                     src="main.png"

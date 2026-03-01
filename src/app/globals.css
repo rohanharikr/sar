@@ -19,6 +19,16 @@
     }
 }
 
+@keyframes scroll-right {
+    from { transform: translateX(0); }
+    to { transform: translateX(12px); }
+}
+
+@keyframes scroll-left {
+    from { transform: translateX(0) scaleY(-1); }
+    to { transform: translateX(-12px) scaleY(-1); }
+}
+
 body {
     background: var(--background);
     color: var(--foreground);
