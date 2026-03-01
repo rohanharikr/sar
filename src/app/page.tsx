@@ -56,7 +56,7 @@ export default function Home() {
     }, []);
 
     useEffect(() => {
-        const t = setTimeout(() => setLoaded(true), 250);
+        const t = setTimeout(() => setLoaded(true), 150);
         return () => clearTimeout(t);
     }, []);
 
@@ -94,9 +94,9 @@ export default function Home() {
                     </div>
                     <ul className="flex flex-row gap-8 text-xl italic">
                         <li><a href="/animated" className="text-black/65">view the <span className="font-bold">animated</span> version</a></li>
-                        <li><a href="/animated" className="text-black/65">view the <span className="font-bold">animated</span> version</a></li>
+                        <li><a href="/plain" className="text-black/65">view the <span className="font-bold">plain</span> version</a></li>
                     </ul>
-                    <a href="/plain" className="text-black/65 italic text-lg mt-4"><span className="font-bold">~ RSVP ~</span></a>
+                    <a href="/rsvp" className="text-black/65 italic text-lg mt-4"><span className="font-bold">~ RSVP ~</span></a>
                 </div>
             </main>
         </div>

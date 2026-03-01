@@ -73,7 +73,110 @@ export default function Plain() {
                     <a href="https://www.keralatourism.org/" target="_blank">Explore Keralam</a>
                 </div>
 
-                <img src="events.png" className="mt-24 w-1/2" />
+                {/* Events Timeline */}
+                <div className="mt-24 flex flex-col items-center w-full">
+                    <h2 className="tracking-[0.3em] uppercase mb-16">Events</h2>
+
+                    <div className="relative w-full max-w-xs">
+                        {/* Vertical line */}
+                        <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-black/25" />
+
+                        {/* 1st May */}
+                        <div className="relative flex items-center pb-10">
+                            <div className="w-1/2 flex items-center pr-4">
+                                <p className="text-lg italic whitespace-nowrap">1<sup className="text-xs">st</sup> May</p>
+                                <div className="flex-1 border-t border-dashed border-black/30 ml-3" />
+                            </div>
+                            <div className="w-1/2" />
+                        </div>
+
+                        {/* Sangeeth - Right */}
+                        <div className="relative flex pb-10">
+                            <div className="w-1/2" />
+                            <div className="absolute left-1/2 -translate-x-1/2 top-2 w-2.5 h-2.5 rounded-full bg-black/50 z-10" />
+                            <div className="w-1/2 pl-5 flex flex-col items-start">
+                                <img src="sangeeth.png" className="w-14 h-14 mb-1" />
+                                <p className="font-medium text-base">Sangeeth</p>
+                                <p className="text-sm text-black/50">5:30pm</p>
+                            </div>
+                        </div>
+
+                        {/* Dinner - Left */}
+                        <div className="relative flex pb-16">
+                            <div className="w-1/2 pr-5 flex flex-col items-end">
+                                <img src="first-dinner.png" className="w-14 h-14 mb-1" />
+                                <p className="font-medium text-base">Dinner</p>
+                                <p className="text-sm text-black/50">7:30pm</p>
+                            </div>
+                            <div className="absolute left-1/2 -translate-x-1/2 top-2 w-2.5 h-2.5 rounded-full bg-black/50 z-10" />
+                            <div className="w-1/2" />
+                        </div>
+
+                        {/* 3rd May */}
+                        <div className="relative flex items-center pb-10">
+                            <div className="w-1/2 flex items-center pr-4">
+                                <p className="text-lg italic whitespace-nowrap">3<sup className="text-xs">rd</sup> May</p>
+                                <div className="flex-1 border-t border-dashed border-black/30 ml-3" />
+                            </div>
+                            <div className="w-1/2" />
+                        </div>
+
+                        {/* Muhurtham - Right */}
+                        <div className="relative flex pb-10">
+                            <div className="w-1/2" />
+                            <div className="absolute left-1/2 -translate-x-1/2 top-2 w-2.5 h-2.5 rounded-full bg-black/50 z-10" />
+                            <div className="w-1/2 pl-5 flex flex-col items-start">
+                                <img src="muhurtham.png" className="w-14 h-14 mb-1" />
+                                <p className="font-medium text-base">Muhurtham</p>
+                                <p className="text-sm text-black/50">11:57am</p>
+                            </div>
+                        </div>
+
+                        {/* Lunch - Left */}
+                        <div className="relative flex pb-10">
+                            <div className="w-1/2 pr-5 flex flex-col items-end">
+                                <img src="lunch.png" className="w-14 h-14 mb-1" />
+                                <p className="font-medium text-base">Lunch</p>
+                                <p className="text-sm text-black/50">12:45pm</p>
+                            </div>
+                            <div className="absolute left-1/2 -translate-x-1/2 top-2 w-2.5 h-2.5 rounded-full bg-black/50 z-10" />
+                            <div className="w-1/2" />
+                        </div>
+
+                        {/* Photos - Right */}
+                        <div className="relative flex pb-10">
+                            <div className="w-1/2" />
+                            <div className="absolute left-1/2 -translate-x-1/2 top-2 w-2.5 h-2.5 rounded-full bg-black/50 z-10" />
+                            <div className="w-1/2 pl-5 flex flex-col items-start">
+                                <img src="photos.png" className="w-14 h-14 mb-1" />
+                                <p className="font-medium text-base">Photos</p>
+                                <p className="text-sm text-black/50">1:30pm</p>
+                            </div>
+                        </div>
+
+                        {/* Reception - Left */}
+                        <div className="relative flex pb-10">
+                            <div className="w-1/2 pr-5 flex flex-col items-end">
+                                <img src="reception.png" className="w-14 h-14 mb-1" />
+                                <p className="font-medium text-base">Reception</p>
+                                <p className="text-sm text-black/50">7:30pm</p>
+                            </div>
+                            <div className="absolute left-1/2 -translate-x-1/2 top-2 w-2.5 h-2.5 rounded-full bg-black/50 z-10" />
+                            <div className="w-1/2" />
+                        </div>
+
+                        {/* Dinner - Right */}
+                        <div className="relative flex">
+                            <div className="w-1/2" />
+                            <div className="absolute left-1/2 -translate-x-1/2 top-2 w-2.5 h-2.5 rounded-full bg-black/50 z-10" />
+                            <div className="w-1/2 pl-5 flex flex-col items-start">
+                                <img src="second-dinner.png" className="w-14 h-14 mb-1" />
+                                <p className="font-medium text-base">Dinner</p>
+                                <p className="text-sm text-black/50">8pm</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div className="w-full rotate-180" style={{ height: 20, backgroundImage: patternSvg, backgroundRepeat: "repeat-x", backgroundSize: "12px 20px" }} />
         </div>
