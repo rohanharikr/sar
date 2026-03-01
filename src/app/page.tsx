@@ -57,16 +57,16 @@ export default function Home() {
     return (
         <div className="flex min-h-screen items-center justify-center">
             <main className="flex flex-col min-h-screen w-full items-center justify-center relative">
-                {/* <img src="main.png" className="w-lg absolute -mt-[30rem] opacity-15"/> */}
+                <img src="main.png" className="w-5xl absolute opacity-10 pointer-events-none"/>
                 <span className="text-xl italic tracking-widest text-black/65 -mt-10 z-10">the wedding of</span>
-                <h1 className="text-7xl z-10 mt-6">Rahul&nbsp;&nbsp;&nbsp;&&nbsp;&nbsp;&nbsp;Sandra</h1>
-                <div className="my-16 flex flex-row gap-10">
+                <h1 className="text-7xl z-10 mt-6 z-10">Rahul&nbsp;&nbsp;&nbsp;&&nbsp;&nbsp;&nbsp;Sandra</h1>
+                <div className="my-16 flex flex-row gap-10 z-10">
                     <CountdownUnit value={time.days} label="days" />
                     <CountdownUnit value={time.hours} label="hours" />
                     <CountdownUnit value={time.minutes} label="minutes" />
                     <CountdownUnit value={time.seconds} label="seconds" />
                 </div>
-                <ul className="flex flex-row gap-8 text-xl italic">
+                <ul className="flex flex-row gap-8 text-xl italic z-10">
                     <li><a href="/animated" className="text-black/65">view the <span className="font-bold">animated</span> version</a></li>
                     <li><a href="/plain" className="text-black/65">view the <span className="font-bold">plain</span> version</a></li>
                 </ul>
