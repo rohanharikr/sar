@@ -93,10 +93,9 @@ export default function Home() {
                         <CountdownUnit value={time.seconds} label="seconds" />
                     </div>
                     <ul className="flex flex-row gap-8 text-xl italic">
-                        <li><a href="/animated" className="text-black/65">view the <span className="font-bold">animated</span> version</a></li>
-                        <li><a href="/plain" className="text-black/65">view the <span className="font-bold">plain</span> version</a></li>
+                        <li><a href="/animated" className="text-black/65">~ <span className="font-bold">join the celebration</span> ~</a></li>
+                        {/* <li><a href="/plain" className="text-black/65">~ <span className="font-bold">RSVP</span> ~</a></li> */}
                     </ul>
-                    <a href="/rsvp" className="text-black/65 italic text-lg mt-4"><span className="font-bold">~ RSVP ~</span></a>
                 </div>
             </main>
         </div>

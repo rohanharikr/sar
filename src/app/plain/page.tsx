@@ -6,7 +6,7 @@ export default function Plain() {
             <div className="w-full z-20" style={{ height: 20, backgroundImage: patternSvg, backgroundRepeat: "repeat-x", backgroundSize: "12px 20px" }} />
             <ul className="flex flex-col items-end gap-2 text-xl italic fixed bottom-10 right-10">
                 <li><a href="/" className="text-black/65">go <span className="font-bold">home</span></a></li>
-                <li><a href="/rsvp" className="text-black/65"><span className="font-bold">~ RSVP ~</span></a></li>
+                {/* <li><a href="/rsvp" className="text-black/65"><span className="font-bold">~ RSVP ~</span></a></li> */}
                 <li><a href="/animated" className="text-black/65">view the <span className="font-bold">animated</span> version</a></li>
                 {/* <li><a href="/plain" className="text-black/65">view the <span className="font-bold">plain</span> version</a></li> */}
             </ul>
