@@ -85,7 +85,7 @@ export default function Home() {
                     style={{ opacity: loaded ? 1 : 0 }}
                 >
                     <span className="text-xl italic tracking-widest text-black/65 -mt-10">the wedding of</span>
-                    <h1 className="text-7xl mt-6">Rahul&nbsp;&nbsp;&nbsp;&&nbsp;&nbsp;&nbsp;Sandra</h1>
+                    <h1 className="text-7xl mt-6">Rahul&nbsp;&nbsp;&nbsp;<span className="italic">&</span>&nbsp;&nbsp;&nbsp;Sandra</h1>
                     <div className="my-16 flex flex-row gap-10">
                         <CountdownUnit value={time.days} label="days" />
                         <CountdownUnit value={time.hours} label="hours" />
@@ -94,8 +94,9 @@ export default function Home() {
                     </div>
                     <ul className="flex flex-row gap-8 text-xl italic">
                         <li><a href="/animated" className="text-black/65">view the <span className="font-bold">animated</span> version</a></li>
-                        <li><a href="/plain" className="text-black/65">view the <span className="font-bold">plain</span> version</a></li>
+                        <li><a href="/animated" className="text-black/65">view the <span className="font-bold">animated</span> version</a></li>
                     </ul>
+                    <a href="/plain" className="text-black/65 italic text-lg mt-4"><span className="font-bold">~ RSVP ~</span></a>
                 </div>
             </main>
         </div>
