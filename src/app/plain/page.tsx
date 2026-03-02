@@ -20,7 +20,7 @@ export default function Plain() {
                 />
 
                 {/* Together with their families */}
-                <p className="italic tracking-widest -mt-6">
+                <p className="italic tracking-widest -mt-6 z-10">
                     Together with their families
                 </p>
 
@@ -69,7 +69,7 @@ export default function Plain() {
 
                 {/* Events Timeline */}
                 <div className="mt-24 flex flex-col items-center w-full z-10">
-                    <h2 className="tracking-widest font-bold uppercase mb-16">Events</h2>
+                    <h2 className="tracking-widest font-bold uppercase mb-10">Events</h2>
 
                     {/* 1st May group */}
                     <div className="relative w-full max-w-xs">
