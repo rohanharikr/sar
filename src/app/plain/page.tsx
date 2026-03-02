@@ -5,28 +5,22 @@ export default function Plain() {
         <div className="relative flex flex-col justify-center items-center text-2xl">
             <div className="w-full z-20" style={{ height: 20, backgroundImage: patternSvg, backgroundRepeat: "repeat-x", backgroundSize: "12px 20px" }} />
             <ul className="flex flex-col items-end gap-2 text-xl italic fixed bottom-10 right-10">
+                <li><a href="/" className="text-black/65"><span className="font-bold">rsvp</span></a></li>
                 <li><a href="/" className="text-black/65">go <span className="font-bold">home</span></a></li>
                 {/* <li><a href="/rsvp" className="text-black/65"><span className="font-bold">~ RSVP ~</span></a></li> */}
                 <li><a href="/animated" className="text-black/65">view the <span className="font-bold">animated</span> version</a></li>
+                <li><a href="/" className="text-black/65">download <span className="font-bold">wedding invitation pdf</span></a></li>
                 {/* <li><a href="/plain" className="text-black/65">view the <span className="font-bold">plain</span> version</a></li> */}
             </ul>
             <div className="flex flex-col items-center max-w-xl w-full py-16 px-8">
-                {/* Sanskrit verse */}
-                <p className="text-center text-[#B14328] leading-relaxed z-10">
-                    "Samāno mantraḥ samitiḥ samānī…"
-                </p>
-                <p className="text-center text-[#B14328] mt-2 z-10">
-                    — Rig Veda 10.191.2
-                </p>
-
                 {/* Couple illustration */}
                 <img
                     src="plain-main.png"
-                    className="-mt-8"
+                    className="-mt-20"
                 />
 
                 {/* Together with their families */}
-                <p className="italic tracking-widest">
+                <p className="italic tracking-widest -mt-6">
                     Together with their families
                 </p>
 
@@ -74,109 +68,120 @@ export default function Plain() {
                 </div>
 
                 {/* Events Timeline */}
-                <div className="mt-24 flex flex-col items-center w-full">
-                    <h2 className="tracking-[0.3em] uppercase mb-16">Events</h2>
+                <div className="mt-24 flex flex-col items-center w-full z-10">
+                    <h2 className="tracking-widest font-bold uppercase mb-16">Events</h2>
 
+                    {/* 1st May group */}
                     <div className="relative w-full max-w-xs">
-                        {/* Vertical line */}
-                        <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-black/25" />
-
-                        {/* 1st May */}
-                        <div className="relative flex items-center pb-10">
-                            <div className="w-1/2 flex items-center pr-4">
-                                <p className="text-lg italic whitespace-nowrap">1<sup className="text-xs">st</sup> May</p>
-                                <div className="flex-1 border-t border-dashed border-black/30 ml-3" />
-                            </div>
-                            <div className="w-1/2" />
-                        </div>
+                        <div className="absolute left-1/2 -translate-x-1/2 top-[166px] bottom-[36px] w-px bg-black" />
 
                         {/* Sangeeth - Right */}
                         <div className="relative flex pb-10">
+                            {/* 1st May diagonal label */}
+                            <p className="absolute whitespace-nowrap top-[40px] left-0">1<sup className="text-xs">st</sup> May</p>
+                            <svg className="absolute left-[80px] top-[52px]" width="80" height="114" fill="none">
+                                <line x1="0" y1="0" x2="80" y2="114" stroke="black" strokeOpacity="1" strokeDasharray="4 4" strokeWidth="2" />
+                            </svg>
                             <div className="w-1/2" />
-                            <div className="absolute left-1/2 -translate-x-1/2 top-2 w-2.5 h-2.5 rounded-full bg-black/50 z-10" />
-                            <div className="w-1/2 pl-5 flex flex-col items-start">
-                                <img src="sangeeth.png" className="w-14 h-14 mb-1" />
-                                <p className="font-medium text-base">Sangeeth</p>
-                                <p className="text-sm text-black/50">5:30pm</p>
+                            <div className="absolute left-1/2 -translate-x-1/2 top-[156px] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
+                            <div className="w-1/2 pl-5 flex flex-col items-center pt-[50px]">
+                                <img src="sangeeth.png" className="w-auto h-24 mb-1" />
+                                <p className="font-medium italic">Sangeeth</p>
+                                <p className="text-xl text-black/50">5:30pm</p>
                             </div>
                         </div>
 
                         {/* Dinner - Left */}
-                        <div className="relative flex pb-16">
-                            <div className="w-1/2 pr-5 flex flex-col items-end">
-                                <img src="first-dinner.png" className="w-14 h-14 mb-1" />
-                                <p className="font-medium text-base">Dinner</p>
-                                <p className="text-sm text-black/50">7:30pm</p>
+                        <div className="relative flex">
+                            <div className="w-1/2 pr-5 flex flex-col items-center">
+                                <img src="first-dinner.png" className="w-auto h-24 mb-1" />
+                                <p className="font-medium italic">Dinner</p>
+                                <p className="text-xl text-black/50">7:30pm</p>
                             </div>
-                            <div className="absolute left-1/2 -translate-x-1/2 top-2 w-2.5 h-2.5 rounded-full bg-black/50 z-10" />
+                            <div className="absolute left-1/2 -translate-x-1/2 top-[106px] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                             <div className="w-1/2" />
                         </div>
+                    </div>
 
-                        {/* 3rd May */}
-                        <div className="relative flex items-center pb-10">
-                            <div className="w-1/2 flex items-center pr-4">
-                                <p className="text-lg italic whitespace-nowrap">3<sup className="text-xs">rd</sup> May</p>
-                                <div className="flex-1 border-t border-dashed border-black/30 ml-3" />
-                            </div>
-                            <div className="w-1/2" />
-                        </div>
+                    {/* 3rd May group */}
+                    <div className="relative w-full max-w-xs mt-16">
+                        <div className="absolute left-1/2 -translate-x-1/2 top-[166px] bottom-[36px] w-px bg-black" />
 
                         {/* Muhurtham - Right */}
                         <div className="relative flex pb-10">
+                            {/* 3rd May diagonal label */}
+                            <p className="absolute whitespace-nowrap top-[40px] left-0">3<sup className="text-xs">rd</sup> May</p>
+                            <svg className="absolute left-[80px] top-[52px]" width="80" height="114" fill="none">
+                                <line x1="0" y1="0" x2="80" y2="114" stroke="black" strokeOpacity="1" strokeDasharray="4 4" strokeWidth="2" />
+                            </svg>
                             <div className="w-1/2" />
-                            <div className="absolute left-1/2 -translate-x-1/2 top-2 w-2.5 h-2.5 rounded-full bg-black/50 z-10" />
-                            <div className="w-1/2 pl-5 flex flex-col items-start">
-                                <img src="muhurtham.png" className="w-14 h-14 mb-1" />
-                                <p className="font-medium text-base">Muhurtham</p>
-                                <p className="text-sm text-black/50">11:57am</p>
+                            <div className="absolute left-1/2 -translate-x-1/2 top-[156px] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
+                            <div className="w-1/2 pl-5 flex flex-col items-center pt-[50px]">
+                                <img src="muhurtham.png" className="w-auto h-24 mb-1" />
+                                <p className="font-medium italic">Muhurtham</p>
+                                <p className="text-xl text-black/50">11:57am</p>
                             </div>
                         </div>
 
                         {/* Lunch - Left */}
                         <div className="relative flex pb-10">
-                            <div className="w-1/2 pr-5 flex flex-col items-end">
-                                <img src="lunch.png" className="w-14 h-14 mb-1" />
-                                <p className="font-medium text-base">Lunch</p>
-                                <p className="text-sm text-black/50">12:45pm</p>
+                            <div className="w-1/2 pr-5 flex flex-col items-center">
+                                <img src="lunch.png" className="w-auto h-20 mb-1" />
+                                <p className="font-medium italic">Lunch</p>
+                                <p className="text-xl text-black/50">12:45pm</p>
                             </div>
-                            <div className="absolute left-1/2 -translate-x-1/2 top-2 w-2.5 h-2.5 rounded-full bg-black/50 z-10" />
+                            <div className="absolute left-1/2 -translate-x-1/2 top-[106px] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                             <div className="w-1/2" />
                         </div>
 
                         {/* Photos - Right */}
                         <div className="relative flex pb-10">
                             <div className="w-1/2" />
-                            <div className="absolute left-1/2 -translate-x-1/2 top-2 w-2.5 h-2.5 rounded-full bg-black/50 z-10" />
-                            <div className="w-1/2 pl-5 flex flex-col items-start">
-                                <img src="photos.png" className="w-14 h-14 mb-1" />
-                                <p className="font-medium text-base">Photos</p>
-                                <p className="text-sm text-black/50">1:30pm</p>
+                            <div className="absolute left-1/2 -translate-x-1/2 top-[106px] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
+                            <div className="w-1/2 pl-5 flex flex-col items-center">
+                                <img src="photos.png" className="w-auto h-24 mb-1" />
+                                <p className="font-medium italic">Photos</p>
+                                <p className="text-xl text-black/50">1:30pm</p>
                             </div>
                         </div>
 
                         {/* Reception - Left */}
                         <div className="relative flex pb-10">
-                            <div className="w-1/2 pr-5 flex flex-col items-end">
-                                <img src="reception.png" className="w-14 h-14 mb-1" />
-                                <p className="font-medium text-base">Reception</p>
-                                <p className="text-sm text-black/50">7:30pm</p>
+                            <div className="w-1/2 pr-5 flex flex-col items-center">
+                                <img src="reception.png" className="w-auto h-32 mb-1" />
+                                <p className="font-medium italic">Reception</p>
+                                <p className="text-xl text-black/50">7:30pm</p>
                             </div>
-                            <div className="absolute left-1/2 -translate-x-1/2 top-2 w-2.5 h-2.5 rounded-full bg-black/50 z-10" />
+                            <div className="absolute left-1/2 -translate-x-1/2 top-[106px] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                             <div className="w-1/2" />
                         </div>
 
                         {/* Dinner - Right */}
                         <div className="relative flex">
                             <div className="w-1/2" />
-                            <div className="absolute left-1/2 -translate-x-1/2 top-2 w-2.5 h-2.5 rounded-full bg-black/50 z-10" />
-                            <div className="w-1/2 pl-5 flex flex-col items-start">
-                                <img src="second-dinner.png" className="w-14 h-14 mb-1" />
-                                <p className="font-medium text-base">Dinner</p>
-                                <p className="text-sm text-black/50">8pm</p>
+                            <div className="absolute left-1/2 -translate-x-1/2 top-[106px] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
+                            <div className="w-1/2 pl-5 flex flex-col items-center">
+                                <img src="second-dinner.png" className="w-auto h-24 mb-1" />
+                                <p className="font-medium italic">Dinner</p>
+                                <p className="text-xl text-black/50">8pm</p>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div className="mt-24 mb-14 z-10">
+                    <span className="italic">With best compliments from</span>
+                    <p className="text-center mt-4 leading-10">Aatmika, Abhinav, Abhishek,<br/>Rohan, Sanjay</p>
+                </div>
+
+                {/* Sanskrit verse */}
+                <img src="temple.png" className="w-xl absolute bottom-12 z-0 opacity-10 ml-3 pointer-events-none"/>
+                <p className="text-center text-[#B14328] leading-relaxed z-10 mt-32">
+                    "Samāno mantraḥ samitiḥ samānī…"
+                </p>
+                <p className="text-center text-[#B14328] mt-2 z-10 mb-20">
+                    — Rig Veda 10.191.2
+                </p>
             </div>
             <div className="w-full rotate-180" style={{ height: 20, backgroundImage: patternSvg, backgroundRepeat: "repeat-x", backgroundSize: "12px 20px" }} />
         </div>
