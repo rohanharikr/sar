@@ -175,11 +175,11 @@ export default function Plain() {
                 </div>
 
                 {/* Sanskrit verse */}
-                <img src="temple.png" className="w-xl absolute bottom-12 z-0 opacity-10 ml-3 pointer-events-none"/>
+                <img src="temple.png" className="w-2xl absolute bottom-12 z-0 opacity-10 ml-3 pointer-events-none"/>
                 <p className="text-center text-[#B14328] leading-relaxed z-10 mt-32">
                     "Samāno mantraḥ samitiḥ samānī…"
                 </p>
-                <p className="text-center text-[#B14328] mt-2 z-10 mb-20">
+                <p className="text-center text-[#B14328] mt-2 z-10 mb-32">
                     — Rig Veda 10.191.2
                 </p>
             </div>
