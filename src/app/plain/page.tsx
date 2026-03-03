@@ -3,15 +3,14 @@ const patternSvg = `url("data:image/svg+xml,%3Csvg width='6' height='10' viewBox
 export default function Plain() {
     return (
         <div className="relative flex flex-col justify-center items-center text-2xl">
-            <iframe data-testid="embed-iframe" src="https://open.spotify.com/embed/playlist/3YaD8gY2e51YFRMWq485gv?utm_source=generator" width="100%" height="80" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             <div className="w-full z-20" style={{ height: 20, backgroundImage: patternSvg, backgroundRepeat: "repeat-x", backgroundSize: "12px 20px" }} />
             <ul className="flex flex-col items-end gap-2 text-xl italic fixed bottom-10 right-10">
-                <li><a href="/" className="text-black/65"><span className="font-bold">rsvp</span></a></li>
-                <li><a href="/" className="text-black/65">go <span className="font-bold">home</span></a></li>
+                {/* <li><a href="/" className="text-black/65"><span className="font-bold">rsvp</span></a></li> */}
+                {/* <li><a href="/" className="text-black/65">go <span className="font-bold">home</span></a></li> */}
                 {/* <li><a href="/rsvp" className="text-black/65"><span className="font-bold">~ RSVP ~</span></a></li> */}
                 <li><a href="/animated" className="text-black/65">view the <span className="font-bold">animated</span> version</a></li>
-                <li><a href="/" className="text-black/65">download <span className="font-bold">wedding invitation pdf</span></a></li>
-                {/* <li><a href="/plain" className="text-black/65">view the <span className="font-bold">plain</span> version</a></li> */}
+                {/* <li><a href="/" className="text-black/65">download <span className="font-bold">wedding invitation pdf</span></a></li>
+                <li><a href="/plain" className="text-black/65">view the <span className="font-bold">plain</span> version</a></li> */}
             </ul>
             <div className="flex flex-col items-center max-w-xl w-full py-16 px-8">
                 {/* Couple illustration */}
