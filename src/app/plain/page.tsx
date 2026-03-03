@@ -3,6 +3,7 @@ const patternSvg = `url("data:image/svg+xml,%3Csvg width='6' height='10' viewBox
 export default function Plain() {
     return (
         <div className="relative flex flex-col justify-center items-center text-2xl">
+            <iframe data-testid="embed-iframe" src="https://open.spotify.com/embed/playlist/3YaD8gY2e51YFRMWq485gv?utm_source=generator" width="100%" height="80" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             <div className="w-full z-20" style={{ height: 20, backgroundImage: patternSvg, backgroundRepeat: "repeat-x", backgroundSize: "12px 20px" }} />
             <ul className="flex flex-col items-end gap-2 text-xl italic fixed bottom-10 right-10">
                 <li><a href="/" className="text-black/65"><span className="font-bold">rsvp</span></a></li>
@@ -171,11 +172,11 @@ export default function Plain() {
 
                 <div className="mt-24 mb-14 z-10">
                     <span className="italic">With best compliments from</span>
-                    <p className="text-center mt-4 leading-10">Aatmika, Abhinav, Abhishek,<br/>Rohan, Sanjay</p>
+                    <p className="text-center mt-4 leading-10">Aatmika, Abhinav, Abhishek,<br />Rohan, Sanjay</p>
                 </div>
 
                 {/* Sanskrit verse */}
-                <img src="temple.png" className="w-2xl absolute bottom-12 z-0 opacity-10 ml-3 pointer-events-none"/>
+                <img src="temple.png" className="w-2xl absolute bottom-12 z-0 opacity-10 ml-3 pointer-events-none" />
                 <p className="text-center text-[#B14328] leading-relaxed z-10 mt-32">
                     "Samāno mantraḥ samitiḥ samānī…"
                 </p>
