@@ -84,7 +84,7 @@ export default function Home() {
                     className="flex flex-col items-center justify-center transition-opacity duration-2000 ease-in-out z-10"
                     style={{ opacity: loaded ? 1 : 0 }}
                 >
-                    <span className="text-xl italic tracking-widest text-black/65 -mt-10">the wedding of</span>
+                    <span className="text-xl italic tracking-widest text-black/65">the wedding of</span>
                     <h1 className="text-7xl mt-6">Rahul&nbsp;&nbsp;&nbsp;<span className="italic">&</span>&nbsp;&nbsp;&nbsp;Sandra</h1>
                     <div className="my-16 flex flex-row gap-10">
                         <CountdownUnit value={time.days} label="days" />
