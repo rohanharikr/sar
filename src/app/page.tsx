@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const TARGET = new Date("2026-05-03T11:57:00+05:30").getTime();
 
@@ -46,6 +46,20 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
     );
 }
 
+function Typeform() {
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = "//embed.typeform.com/next/embed.js";
+        script.async = true;
+        containerRef.current?.appendChild(script);
+        return () => { script.remove(); };
+    }, []);
+
+    return <div ref={containerRef} data-tf-live="01KK6VXC9VYNFQ08APDEV0YCAA" />;
+}
+
 export default function Home() {
     const [time, setTime] = useState(getTimeLeft);
     const [loaded, setLoaded] = useState(false);
@@ -77,7 +91,7 @@ export default function Home() {
             <main className="flex flex-col min-h-screen w-full items-center justify-center relative">
                 <img
                     src="main.png"
-                    className="w-5xl absolute pointer-events-none transition-opacity duration-2000 ease-in-out"
+                    className="w-3xl absolute pointer-events-none transition-opacity duration-2000 ease-in-out"
                     style={{ opacity: loaded ? 0.1 : 1 }}
                 />
                 <div
@@ -255,6 +269,8 @@ export default function Home() {
                     </p>
                 </div>
             </div>
+
+            <Typeform />
         </div>
     );
 }
