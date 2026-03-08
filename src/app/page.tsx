@@ -64,7 +64,9 @@ function Typeform() {
 export default function Home() {
     const [time, setTime] = useState(getTimeLeft);
     const imgRef = useRef<HTMLImageElement>(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
     const textRef = useRef<HTMLDivElement>(null);
+    const tlRef = useRef<gsap.core.Timeline | null>(null);
 
     useEffect(() => {
         const id = setInterval(() => setTime(getTimeLeft()), 1000);
@@ -72,23 +74,75 @@ export default function Home() {
     }, []);
 
     useEffect(() => {
+        const canvas = canvasRef.current;
         const img = imgRef.current;
         const text = textRef.current;
-        if (!img || !text) return;
+        if (!canvas || !img || !text) return;
 
-        const tl = gsap.timeline({ delay: 0.15 });
+        const imgEl = new Image();
+        imgEl.src = 'main.png';
+        imgEl.onload = () => {
+            const w = img.offsetWidth;
+            const h = img.offsetHeight;
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d')!;
 
-        // 1. Radial mask reveal (2s)
-        tl.fromTo(img,
-            { maskSize: '0% 0%', WebkitMaskSize: '0% 0%', opacity: 1 },
-            { maskSize: '350% 350%', WebkitMaskSize: '350% 350%', duration: 5, ease: 'power2.out' }
-        );
+            const rand = () => Math.random();
+            const dropCount = 14;
+            const drops = Array.from({ length: dropCount }, (_, i) => ({
+                x: 0.05 + rand() * 0.9,
+                y: 0.05 + rand() * 0.9,
+                r: 0,
+                delay: i * 0.15,
+                duration: 4 + rand() * 2,
+            }));
+            // Always have one near center for a solid start
+            drops[0] = { x: 0.45 + rand() * 0.1, y: 0.45 + rand() * 0.1, r: 0, delay: 0, duration: 5 + rand() * 1 };
 
-        // 2. Fade image to 0.1 + text from 0 to 1, starting 2s into the timeline
-        tl.to(img, { opacity: 0.1, duration: 2, ease: 'power2.inOut' }, 1.5);
-        tl.to(text, { opacity: 1, duration: 2, ease: 'power2.inOut' }, 1.5);
+            const maxR = Math.sqrt(w * w + h * h) * 0.7;
 
-        return () => { tl.kill(); };
+            function render() {
+                ctx.clearRect(0, 0, w, h);
+                // Draw ink drop shapes
+                drops.forEach(d => {
+                    if (d.r <= 0) return;
+                    const r = d.r * maxR;
+                    const grad = ctx.createRadialGradient(d.x * w, d.y * h, 0, d.x * w, d.y * h, r);
+                    grad.addColorStop(0, 'rgba(255,255,255,0.9)');
+                    grad.addColorStop(0.3, 'rgba(255,255,255,0.6)');
+                    grad.addColorStop(0.6, 'rgba(255,255,255,0.25)');
+                    grad.addColorStop(1, 'rgba(255,255,255,0)');
+                    ctx.fillStyle = grad;
+                    ctx.beginPath();
+                    ctx.arc(d.x * w, d.y * h, r, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                // Composite: only draw image where ink drops are
+                ctx.globalCompositeOperation = 'source-in';
+                ctx.drawImage(imgEl, 0, 0, w, h);
+                ctx.globalCompositeOperation = 'source-over';
+            }
+
+            const tl = gsap.timeline({ delay: 0.15 });
+
+            drops.forEach(d => {
+                tl.to(d, {
+                    r: 1,
+                    duration: d.duration,
+                    ease: 'power2.out',
+                    onUpdate: render,
+                }, d.delay);
+            });
+
+            // Fade canvas to 0.1 + text from 0 to 1
+            tl.to(canvas, { opacity: 0.1, duration: 2, ease: 'power2.inOut' }, 2.5);
+            tl.to(text, { opacity: 1, duration: 2, ease: 'power2.inOut' }, 2.5);
+
+            tlRef.current = tl;
+        };
+
+        return () => { tlRef.current?.kill(); };
     }, []);
 
     const patternSvg = `url("data:image/svg+xml,%3Csvg width='6' height='10' viewBox='0 0 6 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='1' height='10' fill='%23F7CE76'/%3E%3Crect x='2' width='1' height='10' fill='%23F7CE76'/%3E%3Crect x='4' width='1' height='10' fill='%23F7CE76'/%3E%3Crect x='1' width='1' height='10' fill='%23BE8E2D'/%3E%3Crect x='3' width='1' height='10' fill='%23BE8E2D'/%3E%3Crect x='5' width='1' height='10' fill='%23BE8E2D'/%3E%3Cpath d='M0 4.448H6V3H0V4.448Z' fill='%23B14328'/%3E%3Cpath d='M0.6 5.414H5.4V3.966H0.6V5.414Z' fill='%23B14328'/%3E%3Cpath d='M1.2 6.621H4.8V5.172H1.2V6.621Z' fill='%23B14328'/%3E%3Cpath d='M1.8 7.586H4.2V6.138H1.8V7.586Z' fill='%23B14328'/%3E%3Cpath d='M2.1 8.793H3.9V7.345H2.1V8.793Z' fill='%23B14328'/%3E%3Cpath d='M2.7 10H3.3V8.552H2.7V10Z' fill='%23B14328'/%3E%3C/svg%3E")`;
@@ -109,18 +163,11 @@ export default function Home() {
                 <img
                     ref={imgRef}
                     src="main.png"
+                    className="w-3xl absolute pointer-events-none invisible"
+                />
+                <canvas
+                    ref={canvasRef}
                     className="w-3xl absolute pointer-events-none"
-                    style={{
-                        opacity: 0,
-                        maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)',
-                        WebkitMaskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)',
-                        maskPosition: 'center',
-                        WebkitMaskPosition: 'center' as const,
-                        maskRepeat: 'no-repeat',
-                        WebkitMaskRepeat: 'no-repeat',
-                        maskSize: '0% 0%',
-                        WebkitMaskSize: '0% 0%',
-                    }}
                 />
                 <div
                     ref={textRef}
