@@ -38,7 +38,7 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
 
     return (
         <p className="flex flex-col items-center justify-center">
-            <span className="text-4xl">
+            <span className="text-2xl sm:text-4xl">
                 <RollingDigit digit={tens} />
                 <RollingDigit digit={ones} />
             </span>
@@ -47,32 +47,66 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
     );
 }
 
-function Typeform() {
-    const containerRef = useRef<HTMLDivElement>(null);
+function TypeformButton() {
+    const ref = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
         const script = document.createElement("script");
         script.src = "//embed.typeform.com/next/embed.js";
         script.async = true;
-        containerRef.current?.appendChild(script);
+        document.head.appendChild(script);
         return () => { script.remove(); };
     }, []);
 
-    return <div ref={containerRef} data-tf-live="01KK6VXC9VYNFQ08APDEV0YCAA" />;
+    return (
+        <button
+            ref={ref}
+            data-tf-popup="01KK6VXC9VYNFQ08APDEV0YCAA"
+            data-tf-size="100"
+            className="text-sm uppercase tracking-widest text-black/50 underline hover:text-black transition-colors cursor-pointer"
+        >
+            RSVP
+        </button>
+    );
 }
 
 export default function Home() {
     const [time, setTime] = useState(getTimeLeft);
     const [menuModal, setMenuModal] = useState<string | null>(null);
+    const [menuVisible, setMenuVisible] = useState(false);
+    const modalBackdropRef = useRef<HTMLDivElement>(null);
+    const modalCardRef = useRef<HTMLDivElement>(null);
+
+    const openMenu = (menu: string) => {
+        setMenuModal(menu);
+        setMenuVisible(true);
+    };
+
+    const closeMenu = () => {
+        const backdrop = modalBackdropRef.current;
+        const card = modalCardRef.current;
+        if (!backdrop || !card) { setMenuModal(null); setMenuVisible(false); return; }
+        const tl = gsap.timeline({
+            onComplete: () => { setMenuModal(null); setMenuVisible(false); },
+        });
+        tl.to(card, { y: 40, opacity: 0, duration: 0.25, ease: "power2.in" }, 0);
+        tl.to(backdrop, { opacity: 0, duration: 0.25, ease: "power2.in" }, 0);
+    };
 
     useEffect(() => {
-        if (menuModal) {
+        if (menuModal && menuVisible) {
             document.body.style.overflow = "hidden";
-        } else {
+            const backdrop = modalBackdropRef.current;
+            const card = modalCardRef.current;
+            if (backdrop && card) {
+                gsap.fromTo(backdrop, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" });
+                gsap.fromTo(card, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "power3.out" });
+            }
+        } else if (!menuModal) {
             document.body.style.overflow = "";
         }
         return () => { document.body.style.overflow = ""; };
-    }, [menuModal]);
+    }, [menuModal, menuVisible]);
     const imgRef = useRef<HTMLImageElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const floralCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -308,10 +342,17 @@ export default function Home() {
         // Wait for intro animation to be far enough along before enabling sticky
         const timer = setTimeout(setupSticky, 2500);
 
+        const handleResize = () => {
+            if (scrollHandler) window.removeEventListener('scroll', scrollHandler);
+            setupSticky();
+        };
+        window.addEventListener('resize', handleResize);
+
         return () => {
             tlRef.current?.kill();
             clearTimeout(timer);
             if (scrollHandler) window.removeEventListener('scroll', scrollHandler);
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
 
@@ -333,39 +374,37 @@ export default function Home() {
                 <img
                     ref={imgRef}
                     src="main.png"
-                    className="w-3xl absolute pointer-events-none invisible"
+                    className="w-full max-w-3xl absolute pointer-events-none invisible"
                 />
                 <canvas
                     ref={floralCanvasRef}
                     className="absolute pointer-events-none"
-                    style={{ opacity: 0, width: '45.6rem', marginTop: '-65px' }}
+                    style={{ opacity: 0, width: '100%', maxWidth: '45.6rem', marginTop: '-65px' }}
                 />
                 <canvas
                     ref={canvasRef}
-                    className="w-3xl absolute pointer-events-none"
+                    className="w-full max-w-3xl absolute pointer-events-none"
                 />
                 <div
                     ref={textRef}
                     className="flex flex-col items-center justify-center z-10"
                     style={{ opacity: 0 }}
                 >
-                    <span className="text-xl italic tracking-widest text-black/65">the wedding of</span>
-                    <h1 className="text-7xl mt-6">Rahul&nbsp;&nbsp;&nbsp;<span className="italic">&</span>&nbsp;&nbsp;&nbsp;Sandra</h1>
-                    <div className="my-16 flex flex-row gap-10">
+                    <span className="text-base sm:text-xl italic tracking-widest text-black/65">the wedding of</span>
+                    <h1 className="text-4xl sm:text-5xl md:text-7xl mt-4 sm:mt-6">Rahul&nbsp;&nbsp;&nbsp;<span className="italic">&</span>&nbsp;&nbsp;&nbsp;Sandra</h1>
+                    <div className="my-8 sm:my-16 flex flex-row gap-4 sm:gap-10">
                         <CountdownUnit value={time.days} label="days" />
                         <CountdownUnit value={time.hours} label="hours" />
                         <CountdownUnit value={time.minutes} label="minutes" />
                         <CountdownUnit value={time.seconds} label="seconds" />
                     </div>
-                    {/* <ul className="flex flex-row gap-8 text-xl italic">
-                        <li><a href="/animated" className="text-black/65">~ <span className="font-bold">Begin</span> ~</a></li>
-                    </ul> */}
+                    <TypeformButton />
                 </div>
             </main>
 
             {/* Wedding details */}
-            <div className="flex flex-col justify-center items-center text-2xl relative z-10">
-                <div className="relative flex flex-col items-center max-w-xl w-full py-16 px-8">
+            <div className="flex flex-col justify-center items-center text-xl sm:text-2xl relative z-10">
+                <div className="relative flex flex-col items-center max-w-xl w-full py-10 sm:py-16 px-4 sm:px-8">
                     {/* <img
                         src="plain-main.png"
                         className="-mt-20"
@@ -376,12 +415,12 @@ export default function Home() {
                     </p>
 
                     <div className="flex flex-col items-center gap-6 my-14">
-                        <h1 className="text-7xl z-10">Rahul</h1>
+                        <h1 className="text-5xl sm:text-7xl z-10">Rahul</h1>
                         <img
                             src="rings.png"
-                            className="-my-12 w-72"
+                            className="-my-8 sm:-my-12 w-48 sm:w-72"
                         />
-                        <h1 className="text-7xl z-10">Sandra</h1>
+                        <h1 className="text-5xl sm:text-7xl z-10">Sandra</h1>
                     </div>
 
                     <p className="text-center italic tracking-widest leading-10">
@@ -396,7 +435,7 @@ export default function Home() {
                         between 11:57am and 12:19pm
                     </p>
 
-                    <div className="flex gap-8 uppercase text-sm tracking-widest mt-6 text-black/65 underline">
+                    <div className="flex gap-4 sm:gap-8 uppercase text-sm tracking-widest mt-6 text-black/65 underline">
                         <a href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0AVERSION%3A2.0%0APRODID%3A-//Wedding//EN%0ABEGIN%3AVEVENT%0ADTSTART%3A20260503T062700Z%0ADTEND%3A20260503T064900Z%0ASUMMARY%3ARahul %26 Sandra's Wedding%0ALOCATION%3AHeartland Convention Center%2C Chalakudy%2C Kerala%0AEND%3AVEVENT%0AEND%3AVCALENDAR" download="rahul-sandra-wedding.ics">Apple Calendar</a>
                         <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Rahul+%26+Sandra%27s+Wedding&dates=20260503T062700Z/20260503T064900Z&location=Heartland+Convention+Center%2C+Chalakudy%2C+Kerala" target="_blank">Google Calendar</a>
                     </div>
@@ -408,7 +447,7 @@ export default function Home() {
                     <p className="italic text-center tracking-widest leading-relaxed mt-6">
                         Heartland Convention Center, Chalakudy, Keralam
                     </p>
-                    <div className="flex gap-8 mt-6 uppercase text-sm tracking-widest text-black/65 underline">
+                    <div className="flex gap-4 sm:gap-8 mt-6 uppercase text-sm tracking-widest text-black/65 underline">
                         <a href="https://maps.app.goo.gl/98ZJT5wKz2PSG6Mk7" target="_blank">Directions</a>
                         <a href="https://www.keralatourism.org/" target="_blank">Explore Keralam</a>
                     </div>
@@ -429,7 +468,7 @@ export default function Home() {
                                 <div className="w-1/2" />
                                 <div className="absolute left-1/2 -translate-x-1/2 top-[156px] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                                 <div className="w-1/2 pl-5 flex flex-col items-center pt-[50px]">
-                                    <img src="sangeeth.png" className="w-auto h-24 mb-1" />
+                                    <img src="sangeeth.png" className="w-auto h-16 sm:h-24 mb-1" />
                                     <p className="font-medium italic">Sangeeth</p>
                                     <p className="text-xl text-black/50">5:30pm</p>
                                 </div>
@@ -437,12 +476,12 @@ export default function Home() {
 
                             <div className="relative flex">
                                 <div className="w-1/2 pr-5 flex flex-col items-center">
-                                    <img src="first-dinner.png" className="w-auto h-24 mb-1" />
+                                    <img src="first-dinner.png" className="w-auto h-16 sm:h-24 mb-1" />
                                     <p className="font-medium italic">Dinner</p>
                                     <p className="text-xl text-black/50">7:30pm</p>
-                                    <button onClick={() => setMenuModal("Sangeeth")} className="mt-2 text-xs uppercase tracking-widest text-black/50 underline hover:text-black transition-colors cursor-pointer">Menu</button>
+                                    <button onClick={() => openMenu("Sangeeth")} className="mt-2 text-xs uppercase tracking-widest text-black/50 underline hover:text-black transition-colors cursor-pointer">Menu</button>
                                 </div>
-                                <div className="absolute left-1/2 -translate-x-1/2 top-[106px] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
+                                <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                                 <div className="w-1/2" />
                             </div>
                         </div>
@@ -459,7 +498,7 @@ export default function Home() {
                                 <div className="w-1/2" />
                                 <div className="absolute left-1/2 -translate-x-1/2 top-[156px] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                                 <div className="w-1/2 pl-5 flex flex-col items-center pt-[50px]">
-                                    <img src="muhurtham.png" className="w-auto h-24 mb-1" />
+                                    <img src="muhurtham.png" className="w-auto h-16 sm:h-24 mb-1" />
                                     <p className="font-medium italic">Muhurtham</p>
                                     <p className="text-xl text-black/50">11:57am</p>
                                 </div>
@@ -467,20 +506,20 @@ export default function Home() {
 
                             <div className="relative flex pb-4">
                                 <div className="w-1/2 pr-5 flex flex-col items-center">
-                                    <img src="lunch.png" className="w-auto h-20 mb-1" />
+                                    <img src="lunch.png" className="w-auto h-14 sm:h-20 mb-1" />
                                     <p className="font-medium italic">Lunch</p>
                                     <p className="text-xl text-black/50">12:45pm</p>
-                                    <button onClick={() => setMenuModal("Sadya")} className="mt-2 text-xs uppercase tracking-widest text-black/50 underline hover:text-black transition-colors cursor-pointer">Menu</button>
+                                    <button onClick={() => openMenu("Sadya")} className="mt-2 text-xs uppercase tracking-widest text-black/50 underline hover:text-black transition-colors cursor-pointer">Menu</button>
                                 </div>
-                                <div className="absolute left-1/2 -translate-x-1/2 top-[106px] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
+                                <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                                 <div className="w-1/2" />
                             </div>
 
                             <div className="relative flex pb-4">
                                 <div className="w-1/2" />
-                                <div className="absolute left-1/2 -translate-x-1/2 top-[106px] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
+                                <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                                 <div className="w-1/2 pl-5 flex flex-col items-center">
-                                    <img src="photos.png" className="w-auto h-24 mb-1" />
+                                    <img src="photos.png" className="w-auto h-16 sm:h-24 mb-1" />
                                     <p className="font-medium italic">Photos</p>
                                     <p className="text-xl text-black/50">1:30pm</p>
                                 </div>
@@ -488,22 +527,22 @@ export default function Home() {
 
                             <div className="relative flex pb-4">
                                 <div className="w-1/2 pr-5 flex flex-col items-center">
-                                    <img src="reception.png" className="w-auto h-32 mb-1" />
+                                    <img src="reception.png" className="w-auto h-24 sm:h-32 mb-1" />
                                     <p className="font-medium italic">Reception</p>
                                     <p className="text-xl text-black/50">7:30pm</p>
                                 </div>
-                                <div className="absolute left-1/2 -translate-x-1/2 top-[106px] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
+                                <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                                 <div className="w-1/2" />
                             </div>
 
                             <div className="relative flex">
                                 <div className="w-1/2" />
-                                <div className="absolute left-1/2 -translate-x-1/2 top-[106px] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
+                                <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                                 <div className="w-1/2 pl-5 flex flex-col items-center">
-                                    <img src="second-dinner.png" className="w-auto h-24 mb-1" />
+                                    <img src="second-dinner.png" className="w-auto h-16 sm:h-24 mb-1" />
                                     <p className="font-medium italic">Dinner</p>
                                     <p className="text-xl text-black/50">8pm</p>
-                                    <button onClick={() => setMenuModal("Reception Dinner")} className="mt-2 text-xs uppercase tracking-widest text-black/50 underline hover:text-black transition-colors cursor-pointer">Menu</button>
+                                    <button onClick={() => openMenu("Reception Dinner")} className="mt-2 text-xs uppercase tracking-widest text-black/50 underline hover:text-black transition-colors cursor-pointer">Menu</button>
                                 </div>
                             </div>
                         </div>
@@ -511,14 +550,14 @@ export default function Home() {
 
                     {/* Menu Modal */}
                     {menuModal && (
-                        <div className="fixed inset-0 z-50 flex items-center justify-center" onClick={() => setMenuModal(null)}>
-                            <div className="absolute inset-0 bg-black/40" />
-                            <div className="relative bg-white max-w-sm w-full mx-4 max-h-[80vh] rounded-sm flex flex-col" onClick={(e) => e.stopPropagation()}>
+                        <div className="fixed inset-0 z-50 flex items-center justify-center" onClick={closeMenu}>
+                            <div ref={modalBackdropRef} className="absolute inset-0 bg-black/40" />
+                            <div ref={modalCardRef} className="relative bg-white max-w-sm w-full mx-4 max-h-[80vh] rounded-sm flex flex-col" onClick={(e) => e.stopPropagation()}>
                                 <div className="flex items-center justify-center p-6 pb-4 border-b border-black/10 shrink-0">
                                     <h3 className="font-medium italic text-xl text-center">~ {menuModal} ~</h3>
-                                    <button onClick={() => setMenuModal(null)} className="absolute right-4 text-black/40 hover:text-black text-xl leading-none cursor-pointer">&times;</button>
+                                    <button onClick={closeMenu} className="absolute right-4 text-black/40 hover:text-black text-xl leading-none cursor-pointer">&times;</button>
                                 </div>
-                                <div className="overflow-y-auto p-8 pt-6">
+                                <div className="overflow-y-auto p-4 sm:p-8 pt-4 sm:pt-6">
 
                                 {menuModal === "Sangeeth" && (
                                     <>
@@ -555,9 +594,47 @@ export default function Home() {
                                 )}
 
                                 {menuModal === "Sadya" && (
-                                    <p className="text-base text-center leading-7 text-black/70 italic">
-                                        Traditional Kerala Sadya
-                                    </p>
+                                    <>
+                                        <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Rice &amp; Accompaniments</p>
+                                        <ul className="text-base text-center leading-7 text-black/70 mb-4">
+                                            <li>Boiled Rice</li>
+                                            <li>Parippu Curry</li>
+                                            <li>Sambar</li>
+                                            <li>Rasam</li>
+                                            <li>Ghee</li>
+                                        </ul>
+                                        <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Curries</p>
+                                        <ul className="text-base text-center leading-7 text-black/70 mb-4">
+                                            <li>Avial</li>
+                                            <li>Olan</li>
+                                            <li>Kalan</li>
+                                            <li>Erissery</li>
+                                            <li>Koottukari</li>
+                                            <li>Pachadi</li>
+                                            <li>Kichadi</li>
+                                            <li>Pulissery</li>
+                                        </ul>
+                                        <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Sides</p>
+                                        <ul className="text-base text-center leading-7 text-black/70 mb-4">
+                                            <li>Thoran</li>
+                                            <li>Mezhukkupuratti</li>
+                                            <li>Inji Curry</li>
+                                            <li>Naranga Achar</li>
+                                            <li>Upperi / Chips</li>
+                                            <li>Pappadam</li>
+                                        </ul>
+                                        <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Payasam</p>
+                                        <ul className="text-base text-center leading-7 text-black/70 mb-4">
+                                            <li>Semiya Payasam</li>
+                                            <li>Palada Pradhaman</li>
+                                            <li>Ada Pradhaman</li>
+                                        </ul>
+                                        <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Sweets</p>
+                                        <ul className="text-base text-center leading-7 text-black/70">
+                                            <li>Boli</li>
+                                            <li>Banana</li>
+                                        </ul>
+                                    </>
                                 )}
 
                                 {menuModal === "Reception Dinner" && (
@@ -630,41 +707,49 @@ export default function Home() {
                         </div>
                     )}
 
-                    <div className="mt-24 flex flex-row z-10">
-                        <div className="w-44 flex flex-col items-center">
-                            <h2 className="tracking-widest font-bold uppercase mb-4 text-sm">Accommodation</h2>
-                            <p className="text-center leading-relaxed text-black/70 text-base">Sky International</p>
-                            <p className="text-center leading-relaxed text-black/70 text-base">Cochin Airport Hotel</p>
-                        </div>
-                        <div className="w-px bg-black/20 self-stretch" />
-                        <div className="w-44 flex flex-col items-center">
-                            <h2 className="tracking-widest font-bold uppercase mb-4 text-sm">Travel</h2>
-                            <p className="text-center italic leading-relaxed text-black/70 text-base">Details coming soon</p>
-                        </div>
-                        <div className="w-px bg-black/20 self-stretch" />
-                        <div className="w-44 flex flex-col items-center">
-                            <h2 className="tracking-widest font-bold uppercase mb-4 text-sm">Dress Code</h2>
-                            <p className="text-center leading-relaxed text-black/70 text-base">Traditional or semi-formal</p>
-                            <p className="text-center leading-relaxed text-black/70 text-base">Saree, mundu, or kurta preferred</p>
-                        </div>
-                    </div>
-
                     {/* <div className="mt-24 mb-14 z-10">
                         <span className="italic">With best compliments from</span>
                         <p className="text-center mt-4 leading-10">Aatmika, Abhinav, Abhishek,<br />Rohan, Sanjay</p>
                     </div> */}
 
-                    {/* <img src="temple.png" className="w-2xl absolute bottom-12 z-0 opacity-10 ml-3 pointer-events-none" /> */}
-                    {/* <p className="text-center text-[#B14328] leading-relaxed z-10 mt-32">
-                        "Samāno mantraḥ samitiḥ samānī…"
-                    </p>
-                    <p className="text-center text-[#B14328] mt-2 z-10 mb-32">
-                        — Rig Veda 10.191.2
-                    </p> */}
                 </div>
             </div>
 
-            {/* <Typeform /> */}
+            <div className="mt-16 sm:mt-24 mb-16 sm:mb-24 flex flex-col sm:flex-row items-center sm:items-start justify-center w-full gap-8 sm:gap-0 px-4 sm:px-0">
+                <div className="flex-1 max-w-xs flex flex-col items-center">
+                    <h2 className="tracking-widest font-bold uppercase mb-4 text-sm">Accommodation</h2>
+                    <a href="https://share.google/8l1tz1qtfcSldVZSF" target="_blank" className="text-center leading-relaxed text-black/70 text-base underline hover:text-black transition-colors">Sky International</a>
+                    <a href="https://maps.app.goo.gl/QLQtRva1MuA2QUvS9" target="_blank" className="text-center leading-relaxed text-black/70 text-base underline hover:text-black transition-colors">Cochin Airport Hotel</a>
+                </div>
+                <span className="hidden sm:block text-black/20 self-center">&bull;</span>
+                <div className="flex-1 max-w-xs flex flex-col items-center">
+                    <h2 className="tracking-widest font-bold uppercase mb-4 text-sm">Travel</h2>
+                    <p className="text-center italic leading-relaxed text-black/70 text-base">Details coming soon</p>
+                </div>
+                <span className="hidden sm:block text-black/20 self-center">&bull;</span>
+                <div className="flex-1 max-w-xs flex flex-col items-center">
+                    <h2 className="tracking-widest font-bold uppercase mb-4 text-sm">Dress Code</h2>
+                    <p className="text-center leading-relaxed text-black/70 text-base">Traditional or semi-formal</p>
+                    <p className="text-center leading-relaxed text-black/70 text-base">Saree, mundu, or kurta preferred</p>
+                </div>
+            </div>
+
+            <div className="mb-16 sm:mb-24 flex flex-col items-center px-4 sm:px-0">
+                <h2 className="tracking-widest font-bold uppercase mb-4 text-sm">Contact</h2>
+                <a href="mailto:contact@sandraandrahul.com" className="text-base text-black/70 underline hover:text-black transition-colors">contact@sandraandrahul.com</a>
+                <a href="tel:+919947888903" className="text-base text-black/70 underline hover:text-black transition-colors mt-1">+91 9947888903</a>
+            </div>
+
+            <div className="relative flex flex-col items-center justify-center w-full mb-12">
+                <img src="temple.png" className="w-full max-w-2xl absolute z-0 opacity-10 pointer-events-none" />
+                <p className="text-center text-[#B14328] text-lg sm:text-2xl leading-relaxed z-10 mt-16 px-4 sm:px-0">
+                    "Samāno mantraḥ samitiḥ samānī…"
+                </p>
+                <p className="text-center text-[#B14328] text-lg sm:text-2xl mt-2 z-10 mb-16">
+                    — Rig Veda 10.191.2
+                </p>
+            </div>
+
         </div>
     );
 }
