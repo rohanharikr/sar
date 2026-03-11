@@ -63,9 +63,21 @@ function Typeform() {
 
 export default function Home() {
     const [time, setTime] = useState(getTimeLeft);
+    const [menuModal, setMenuModal] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (menuModal) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+        return () => { document.body.style.overflow = ""; };
+    }, [menuModal]);
     const imgRef = useRef<HTMLImageElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const floralCanvasRef = useRef<HTMLCanvasElement>(null);
     const textRef = useRef<HTMLDivElement>(null);
+    const familiesRef = useRef<HTMLParagraphElement>(null);
     const tlRef = useRef<gsap.core.Timeline | null>(null);
 
     useEffect(() => {
@@ -75,9 +87,11 @@ export default function Home() {
 
     useEffect(() => {
         const canvas = canvasRef.current;
+        const floralCanvas = floralCanvasRef.current;
         const img = imgRef.current;
         const text = textRef.current;
-        if (!canvas || !img || !text) return;
+        const families = familiesRef.current;
+        if (!canvas || !floralCanvas || !img || !text || !families) return;
 
         const imgEl = new Image();
         imgEl.src = 'main.png';
@@ -142,7 +156,163 @@ export default function Home() {
             tlRef.current = tl;
         };
 
-        return () => { tlRef.current?.kill(); };
+        // Set up floral canvas with ink drop reveal driven by scroll
+        const floralImgEl = new window.Image();
+        floralImgEl.src = 'floral.png';
+        let floralReady = false;
+        let floralCtx: CanvasRenderingContext2D;
+        const floralRand = () => Math.random();
+        const floralDropCount = 12;
+        const floralDrops = Array.from({ length: floralDropCount }, (_, i) => ({
+            x: 0.05 + floralRand() * 0.9,
+            y: 0.05 + floralRand() * 0.9,
+            r: 0,
+        }));
+        floralDrops[0] = { x: 0.45 + floralRand() * 0.1, y: 0.45 + floralRand() * 0.1, r: 0 };
+        let floralMaxR = 0;
+
+        floralImgEl.onload = () => {
+            const w = img.offsetWidth;
+            const h = img.offsetHeight;
+            floralCanvas.width = w;
+            floralCanvas.height = h;
+            floralCtx = floralCanvas.getContext('2d')!;
+            floralMaxR = Math.sqrt(w * w + h * h) * 0.7;
+            floralReady = true;
+        };
+
+        function renderFloral(progress: number) {
+            if (!floralReady || !floralCanvas) return;
+            const w = floralCanvas.width;
+            const h = floralCanvas.height;
+            floralCtx.clearRect(0, 0, w, h);
+
+            floralDrops.forEach((d, i) => {
+                // Stagger each drop's reveal based on progress
+                const dropStart = i / floralDropCount;
+                const dropProgress = Math.max(0, Math.min(1, (progress - dropStart * 0.5) / 0.7));
+                if (dropProgress <= 0) return;
+                const r = dropProgress * floralMaxR;
+                const grad = floralCtx.createRadialGradient(d.x * w, d.y * h, 0, d.x * w, d.y * h, r);
+                grad.addColorStop(0, 'rgba(255,255,255,0.9)');
+                grad.addColorStop(0.3, 'rgba(255,255,255,0.6)');
+                grad.addColorStop(0.6, 'rgba(255,255,255,0.25)');
+                grad.addColorStop(1, 'rgba(255,255,255,0)');
+                floralCtx.fillStyle = grad;
+                floralCtx.beginPath();
+                floralCtx.arc(d.x * w, d.y * h, r, 0, Math.PI * 2);
+                floralCtx.fill();
+            });
+
+            floralCtx.globalCompositeOperation = 'source-in';
+            floralCtx.drawImage(floralImgEl, 0, 0, w, h);
+            floralCtx.globalCompositeOperation = 'source-over';
+        }
+
+        // Sticky scroll behavior for canvas
+
+        let canvasDocTop = 0;
+        let scrollHandler: (() => void) | null = null;
+
+        const setupSticky = () => {
+            // Calculate the canvas's original position in the document
+            canvasDocTop = canvas.getBoundingClientRect().top + window.scrollY;
+            const canvasH = canvas.offsetHeight;
+            const canvasLeft = canvas.getBoundingClientRect().left;
+
+            const stickyTop = 40;
+
+            // Total scroll distance from sticky start to families text
+            const stickyStart = canvasDocTop - stickyTop;
+            const familiesDocTop = families.getBoundingClientRect().top + window.scrollY;
+            const totalStickyDistance = familiesDocTop - stickyStart - canvasH - stickyTop;
+
+            // Floral centering: offset to center the smaller floral canvas over main canvas
+            const mainW = canvas.offsetWidth;
+            const floralW = floralCanvas.offsetWidth;
+            const floralLeftOffset = (mainW - floralW) / 2;
+
+            // The scroll point where main progress hits 1
+            const mainAnimEnd = stickyStart + totalStickyDistance * 2.25;
+            // Additional scroll for floral reveal after main anim ends
+            const floralScrollRange = totalStickyDistance * 0.75;
+
+            scrollHandler = () => {
+                const familiesRect = families.getBoundingClientRect();
+                const scrollY = window.scrollY;
+
+                // Calculate scroll progress (0 = just became sticky, 1 = about to release)
+                const progress = Math.min(1, Math.max(0, (scrollY - stickyStart) / (totalStickyDistance * 2.25)));
+                // Opacity: 0.1 → 1
+                const opacity = 0.1 + progress * 0.9;
+                // Scale: 1 → 0.55
+                const scale = 1 - progress * 0.45;
+
+                const scaledH = canvasH * scale;
+
+                canvas.style.transformOrigin = 'top center';
+
+                // Floral reveal: starts only after main scaling completes
+                const floralProgress = Math.min(1, Math.max(0, (scrollY - mainAnimEnd) / floralScrollRange));
+                renderFloral(floralProgress);
+                floralCanvas.style.opacity = floralProgress > 0 ? '1' : '0';
+                floralCanvas.style.transformOrigin = 'top center';
+                const floralLeft = canvasLeft + floralLeftOffset;
+
+                if (familiesRect.top <= scaledH + stickyTop) {
+                    // State 3: "Together" text reached canvas bottom — scroll canvas up with it
+                    canvas.style.position = 'fixed';
+                    canvas.style.top = `${familiesRect.top - scaledH}px`;
+                    canvas.style.left = `${canvasLeft}px`;
+                    canvas.style.zIndex = '0';
+                    canvas.style.opacity = '1';
+                    canvas.style.transform = `scale(${scale})`;
+                    floralCanvas.style.position = 'fixed';
+                    floralCanvas.style.top = `${familiesRect.top - scaledH}px`;
+                    floralCanvas.style.left = `${floralLeft}px`;
+                    floralCanvas.style.transform = `scale(${scale})`;
+                } else if (scrollY >= stickyStart) {
+                    // State 2: Stuck at top with padding
+                    canvas.style.position = 'fixed';
+                    canvas.style.top = `${stickyTop}px`;
+                    canvas.style.left = `${canvasLeft}px`;
+                    canvas.style.zIndex = '0';
+                    canvas.style.opacity = `${opacity}`;
+                    canvas.style.transform = `scale(${scale})`;
+                    text.style.opacity = `${1 - progress}`;
+                    floralCanvas.style.position = 'fixed';
+                    floralCanvas.style.top = `${stickyTop}px`;
+                    floralCanvas.style.left = `${floralLeft}px`;
+                    floralCanvas.style.transform = `scale(${scale})`;
+                } else {
+                    // State 1: Normal scroll (original absolute position in hero)
+                    canvas.style.position = 'absolute';
+                    canvas.style.top = '';
+                    canvas.style.left = '';
+                    canvas.style.zIndex = '';
+                    canvas.style.opacity = '0.1';
+                    canvas.style.transform = 'scale(1)';
+                    canvas.style.transformOrigin = '';
+                    text.style.opacity = '1';
+                    floralCanvas.style.position = 'absolute';
+                    floralCanvas.style.top = '';
+                    floralCanvas.style.left = '';
+                    floralCanvas.style.transform = '';
+                    floralCanvas.style.transformOrigin = '';
+                }
+            };
+
+            window.addEventListener('scroll', scrollHandler, { passive: true });
+        };
+
+        // Wait for intro animation to be far enough along before enabling sticky
+        const timer = setTimeout(setupSticky, 2500);
+
+        return () => {
+            tlRef.current?.kill();
+            clearTimeout(timer);
+            if (scrollHandler) window.removeEventListener('scroll', scrollHandler);
+        };
     }, []);
 
     const patternSvg = `url("data:image/svg+xml,%3Csvg width='6' height='10' viewBox='0 0 6 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='1' height='10' fill='%23F7CE76'/%3E%3Crect x='2' width='1' height='10' fill='%23F7CE76'/%3E%3Crect x='4' width='1' height='10' fill='%23F7CE76'/%3E%3Crect x='1' width='1' height='10' fill='%23BE8E2D'/%3E%3Crect x='3' width='1' height='10' fill='%23BE8E2D'/%3E%3Crect x='5' width='1' height='10' fill='%23BE8E2D'/%3E%3Cpath d='M0 4.448H6V3H0V4.448Z' fill='%23B14328'/%3E%3Cpath d='M0.6 5.414H5.4V3.966H0.6V5.414Z' fill='%23B14328'/%3E%3Cpath d='M1.2 6.621H4.8V5.172H1.2V6.621Z' fill='%23B14328'/%3E%3Cpath d='M1.8 7.586H4.2V6.138H1.8V7.586Z' fill='%23B14328'/%3E%3Cpath d='M2.1 8.793H3.9V7.345H2.1V8.793Z' fill='%23B14328'/%3E%3Cpath d='M2.7 10H3.3V8.552H2.7V10Z' fill='%23B14328'/%3E%3C/svg%3E")`;
@@ -164,6 +334,11 @@ export default function Home() {
                     ref={imgRef}
                     src="main.png"
                     className="w-3xl absolute pointer-events-none invisible"
+                />
+                <canvas
+                    ref={floralCanvasRef}
+                    className="absolute pointer-events-none"
+                    style={{ opacity: 0, width: '45.6rem', marginTop: '-65px' }}
                 />
                 <canvas
                     ref={canvasRef}
@@ -189,14 +364,14 @@ export default function Home() {
             </main>
 
             {/* Wedding details */}
-            <div className="flex flex-col justify-center items-center text-2xl">
+            <div className="flex flex-col justify-center items-center text-2xl relative z-10">
                 <div className="relative flex flex-col items-center max-w-xl w-full py-16 px-8">
                     {/* <img
                         src="plain-main.png"
                         className="-mt-20"
                     /> */}
 
-                    <p className="italic tracking-widest -mt-6 z-10">
+                    <p ref={familiesRef} className="italic tracking-widest -mt-6 z-10">
                         Together with their families
                     </p>
 
@@ -244,9 +419,9 @@ export default function Home() {
 
                         {/* 1st May group */}
                         <div className="relative w-full max-w-xs">
-                            <div className="absolute left-1/2 -translate-x-1/2 top-[166px] bottom-[36px] w-px bg-black" />
+                            <div className="absolute left-1/2 -translate-x-1/2 top-[166px] bottom-[60px] w-px bg-black" />
 
-                            <div className="relative flex pb-10">
+                            <div className="relative flex pb-4">
                                 <p className="absolute whitespace-nowrap top-[40px] left-0">1<sup className="text-xs">st</sup> May</p>
                                 <svg className="absolute left-[80px] top-[52px]" width="80" height="114" fill="none">
                                     <line x1="0" y1="0" x2="80" y2="114" stroke="black" strokeOpacity="1" strokeDasharray="4 4" strokeWidth="2" />
@@ -265,6 +440,7 @@ export default function Home() {
                                     <img src="first-dinner.png" className="w-auto h-24 mb-1" />
                                     <p className="font-medium italic">Dinner</p>
                                     <p className="text-xl text-black/50">7:30pm</p>
+                                    <button onClick={() => setMenuModal("Sangeeth")} className="mt-2 text-xs uppercase tracking-widest text-black/50 underline hover:text-black transition-colors cursor-pointer">Menu</button>
                                 </div>
                                 <div className="absolute left-1/2 -translate-x-1/2 top-[106px] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                                 <div className="w-1/2" />
@@ -273,9 +449,9 @@ export default function Home() {
 
                         {/* 3rd May group */}
                         <div className="relative w-full max-w-xs mt-16">
-                            <div className="absolute left-1/2 -translate-x-1/2 top-[166px] bottom-[36px] w-px bg-black" />
+                            <div className="absolute left-1/2 -translate-x-1/2 top-[166px] bottom-[60px] w-px bg-black" />
 
-                            <div className="relative flex pb-10">
+                            <div className="relative flex pb-4">
                                 <p className="absolute whitespace-nowrap top-[40px] left-0">3<sup className="text-xs">rd</sup> May</p>
                                 <svg className="absolute left-[80px] top-[52px]" width="80" height="114" fill="none">
                                     <line x1="0" y1="0" x2="80" y2="114" stroke="black" strokeOpacity="1" strokeDasharray="4 4" strokeWidth="2" />
@@ -289,17 +465,18 @@ export default function Home() {
                                 </div>
                             </div>
 
-                            <div className="relative flex pb-10">
+                            <div className="relative flex pb-4">
                                 <div className="w-1/2 pr-5 flex flex-col items-center">
                                     <img src="lunch.png" className="w-auto h-20 mb-1" />
                                     <p className="font-medium italic">Lunch</p>
                                     <p className="text-xl text-black/50">12:45pm</p>
+                                    <button onClick={() => setMenuModal("Sadya")} className="mt-2 text-xs uppercase tracking-widest text-black/50 underline hover:text-black transition-colors cursor-pointer">Menu</button>
                                 </div>
                                 <div className="absolute left-1/2 -translate-x-1/2 top-[106px] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                                 <div className="w-1/2" />
                             </div>
 
-                            <div className="relative flex pb-10">
+                            <div className="relative flex pb-4">
                                 <div className="w-1/2" />
                                 <div className="absolute left-1/2 -translate-x-1/2 top-[106px] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                                 <div className="w-1/2 pl-5 flex flex-col items-center">
@@ -309,7 +486,7 @@ export default function Home() {
                                 </div>
                             </div>
 
-                            <div className="relative flex pb-10">
+                            <div className="relative flex pb-4">
                                 <div className="w-1/2 pr-5 flex flex-col items-center">
                                     <img src="reception.png" className="w-auto h-32 mb-1" />
                                     <p className="font-medium italic">Reception</p>
@@ -326,8 +503,149 @@ export default function Home() {
                                     <img src="second-dinner.png" className="w-auto h-24 mb-1" />
                                     <p className="font-medium italic">Dinner</p>
                                     <p className="text-xl text-black/50">8pm</p>
+                                    <button onClick={() => setMenuModal("Reception Dinner")} className="mt-2 text-xs uppercase tracking-widest text-black/50 underline hover:text-black transition-colors cursor-pointer">Menu</button>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    {/* Menu Modal */}
+                    {menuModal && (
+                        <div className="fixed inset-0 z-50 flex items-center justify-center" onClick={() => setMenuModal(null)}>
+                            <div className="absolute inset-0 bg-black/40" />
+                            <div className="relative bg-white max-w-sm w-full mx-4 max-h-[80vh] rounded-sm flex flex-col" onClick={(e) => e.stopPropagation()}>
+                                <div className="flex items-center justify-center p-6 pb-4 border-b border-black/10 shrink-0">
+                                    <h3 className="font-medium italic text-xl text-center">~ {menuModal} ~</h3>
+                                    <button onClick={() => setMenuModal(null)} className="absolute right-4 text-black/40 hover:text-black text-xl leading-none cursor-pointer">&times;</button>
+                                </div>
+                                <div className="overflow-y-auto p-8 pt-6">
+
+                                {menuModal === "Sangeeth" && (
+                                    <>
+                                        <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Welcome Drink</p>
+                                        <ul className="text-base text-center leading-7 text-black/70 mb-4">
+                                            <li>Passion Fruit Juice</li>
+                                        </ul>
+                                        <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Soup</p>
+                                        <ul className="text-base text-center leading-7 text-black/70 mb-4">
+                                            <li>Hot &amp; Sour Chicken Soup</li>
+                                            <li>Hot &amp; Sour Veg Soup</li>
+                                        </ul>
+                                        <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Starters</p>
+                                        <ul className="text-base text-center leading-7 text-black/70 mb-4">
+                                            <li>Chicken Kabab</li>
+                                            <li>Veg Corn Cheese</li>
+                                        </ul>
+                                        <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Mains</p>
+                                        <ul className="text-base text-center leading-7 text-black/70 mb-4">
+                                            <li>Nool Porotta</li>
+                                            <li>Veg Pulao</li>
+                                            <li>Chicken Roast</li>
+                                            <li>Paneer Butter Masala</li>
+                                            <li>Salad</li>
+                                            <li>Raitha</li>
+                                            <li>Pickles</li>
+                                            <li>Pappad</li>
+                                        </ul>
+                                        <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Dessert</p>
+                                        <ul className="text-base text-center leading-7 text-black/70">
+                                            <li>Ice Cream</li>
+                                        </ul>
+                                    </>
+                                )}
+
+                                {menuModal === "Sadya" && (
+                                    <p className="text-base text-center leading-7 text-black/70 italic">
+                                        Traditional Kerala Sadya
+                                    </p>
+                                )}
+
+                                {menuModal === "Reception Dinner" && (
+                                    <>
+                                        <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Welcome Drinks</p>
+                                        <ul className="text-base text-center leading-7 text-black/70 mb-4">
+                                            <li>Pineapple Juice</li>
+                                            <li>Watermelon Juice</li>
+                                            <li>Grape Juice</li>
+                                            <li>Guava Juice</li>
+                                            <li>Mint Lime</li>
+                                            <li>Mojitos</li>
+                                        </ul>
+                                        <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Soup</p>
+                                        <ul className="text-base text-center leading-7 text-black/70 mb-4">
+                                            <li>Sweet Corn Chicken Soup</li>
+                                            <li>Sweet Corn Veg Soup</li>
+                                        </ul>
+                                        <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Starters</p>
+                                        <ul className="text-base text-center leading-7 text-black/70 mb-4">
+                                            <li>Chicken Lollypop</li>
+                                            <li>Fish Finger</li>
+                                            <li>Veg Spring Rolls</li>
+                                            <li>French Fries</li>
+                                        </ul>
+                                        <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Mains</p>
+                                        <ul className="text-base text-center leading-7 text-black/70 mb-4">
+                                            <li>Appam</li>
+                                            <li>Rumal Roti</li>
+                                            <li>Chicken Dum Biryani</li>
+                                            <li>Boiled Rice</li>
+                                            <li>Duck Roast</li>
+                                            <li>Beef Fry</li>
+                                            <li>Fish Vattichathu</li>
+                                            <li>Pork Fry</li>
+                                            <li>Mango Curry</li>
+                                            <li>Kalan</li>
+                                            <li>Thoran</li>
+                                            <li>Chamanthi</li>
+                                        </ul>
+                                        <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Salads &amp; Sides</p>
+                                        <ul className="text-base text-center leading-7 text-black/70 mb-4">
+                                            <li>Salads</li>
+                                            <li>Pickles</li>
+                                            <li>Uppilitta</li>
+                                        </ul>
+                                        <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Veg Counter</p>
+                                        <ul className="text-base text-center leading-7 text-black/70 mb-4">
+                                            <li>Veg Stew</li>
+                                            <li>Veg Pulao</li>
+                                            <li>Paneer Butter Masala</li>
+                                            <li>Gobi Manchurian</li>
+                                        </ul>
+                                        <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Dessert</p>
+                                        <ul className="text-base text-center leading-7 text-black/70 mb-4">
+                                            <li>Ice Cream</li>
+                                            <li>Chocolate Pastry</li>
+                                            <li>Cut Fruits</li>
+                                            <li>Gulab Jamun</li>
+                                            <li>Carrot Halwa</li>
+                                        </ul>
+                                        <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Beverages</p>
+                                        <ul className="text-base text-center leading-7 text-black/70">
+                                            <li>Tea &amp; Coffee</li>
+                                        </ul>
+                                    </>
+                                )}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    <div className="mt-24 flex flex-row z-10">
+                        <div className="w-44 flex flex-col items-center">
+                            <h2 className="tracking-widest font-bold uppercase mb-4 text-sm">Accommodation</h2>
+                            <p className="text-center leading-relaxed text-black/70 text-base">Sky International</p>
+                            <p className="text-center leading-relaxed text-black/70 text-base">Cochin Airport Hotel</p>
+                        </div>
+                        <div className="w-px bg-black/20 self-stretch" />
+                        <div className="w-44 flex flex-col items-center">
+                            <h2 className="tracking-widest font-bold uppercase mb-4 text-sm">Travel</h2>
+                            <p className="text-center italic leading-relaxed text-black/70 text-base">Details coming soon</p>
+                        </div>
+                        <div className="w-px bg-black/20 self-stretch" />
+                        <div className="w-44 flex flex-col items-center">
+                            <h2 className="tracking-widest font-bold uppercase mb-4 text-sm">Dress Code</h2>
+                            <p className="text-center leading-relaxed text-black/70 text-base">Traditional or semi-formal</p>
+                            <p className="text-center leading-relaxed text-black/70 text-base">Saree, mundu, or kurta preferred</p>
                         </div>
                     </div>
 
@@ -336,17 +654,17 @@ export default function Home() {
                         <p className="text-center mt-4 leading-10">Aatmika, Abhinav, Abhishek,<br />Rohan, Sanjay</p>
                     </div> */}
 
-                    <img src="temple.png" className="w-2xl absolute bottom-12 z-0 opacity-10 ml-3 pointer-events-none" />
-                    <p className="text-center text-[#B14328] leading-relaxed z-10 mt-32">
+                    {/* <img src="temple.png" className="w-2xl absolute bottom-12 z-0 opacity-10 ml-3 pointer-events-none" /> */}
+                    {/* <p className="text-center text-[#B14328] leading-relaxed z-10 mt-32">
                         "Samāno mantraḥ samitiḥ samānī…"
                     </p>
                     <p className="text-center text-[#B14328] mt-2 z-10 mb-32">
                         — Rig Veda 10.191.2
-                    </p>
+                    </p> */}
                 </div>
             </div>
 
-            <Typeform />
+            {/* <Typeform /> */}
         </div>
     );
 }
