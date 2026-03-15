@@ -49,7 +49,7 @@ export default function Events() {
 
                     {/* 1st May group */}
                     <div className="relative w-full max-w-xs">
-                        <div className="absolute left-1/2 -translate-x-1/2 top-[166px] bottom-[60px] w-px bg-black" />
+                        <div className="absolute left-1/2 -translate-x-1/2 top-[166px] bottom-[90px] w-px bg-black" />
 
                         <div className="relative flex pb-4">
                             <p className="absolute whitespace-nowrap top-[40px] left-0">1<sup className="text-xs">st</sup> May</p>
@@ -72,14 +72,14 @@ export default function Events() {
                                 <p className="text-xl text-black/50">7:30pm</p>
                                 <button onClick={() => openMenu("Sangeeth")} className="mt-2 text-xs uppercase tracking-widest text-black/50 underline hover:text-black transition-colors cursor-pointer">Menu</button>
                             </div>
-                            <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
+                            <div className="absolute left-1/2 -translate-x-1/2 top-[45%] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                             <div className="w-1/2" />
                         </div>
                     </div>
 
                     {/* 3rd May group */}
                     <div className="relative w-full max-w-xs mt-16">
-                        <div className="absolute left-1/2 -translate-x-1/2 top-[166px] bottom-[60px] w-px bg-black" />
+                        <div className="absolute left-1/2 -translate-x-1/2 top-[166px] bottom-[90px] w-px bg-black" />
 
                         <div className="relative flex pb-4">
                             <p className="absolute whitespace-nowrap top-[40px] left-0">3<sup className="text-xs">rd</sup> May</p>
@@ -102,13 +102,13 @@ export default function Events() {
                                 <p className="text-xl text-black/50">12:45pm</p>
                                 <button onClick={() => openMenu("Sadya")} className="mt-2 text-xs uppercase tracking-widest text-black/50 underline hover:text-black transition-colors cursor-pointer">Menu</button>
                             </div>
-                            <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
+                            <div className="absolute left-1/2 -translate-x-1/2 top-[45%] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                             <div className="w-1/2" />
                         </div>
 
                         <div className="relative flex pb-4">
                             <div className="w-1/2" />
-                            <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
+                            <div className="absolute left-1/2 -translate-x-1/2 top-[45%] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                             <div className="w-1/2 pl-5 flex flex-col items-center">
                                 <img src="/photos.png" className="w-auto h-16 sm:h-24 mb-1" />
                                 <p className="font-medium italic">Photos</p>
@@ -122,13 +122,13 @@ export default function Events() {
                                 <p className="font-medium italic">Reception</p>
                                 <p className="text-xl text-black/50">7:30pm</p>
                             </div>
-                            <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
+                            <div className="absolute left-1/2 -translate-x-1/2 top-[45%] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                             <div className="w-1/2" />
                         </div>
 
                         <div className="relative flex">
                             <div className="w-1/2" />
-                            <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
+                            <div className="absolute left-1/2 -translate-x-1/2 top-[45%] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                             <div className="w-1/2 pl-5 flex flex-col items-center">
                                 <img src="/second-dinner.png" className="w-auto h-16 sm:h-24 mb-1" />
                                 <p className="font-medium italic">Dinner</p>
