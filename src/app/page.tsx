@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import gsap from "gsap";
 import confetti from "canvas-confetti";
 
@@ -48,26 +47,6 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
             </span>
             <span>{label}</span>
         </p>
-    );
-}
-
-function TypeformButton() {
-    useEffect(() => {
-        const script = document.createElement("script");
-        script.src = "//embed.typeform.com/next/embed.js";
-        script.async = true;
-        document.head.appendChild(script);
-        return () => { script.remove(); };
-    }, []);
-
-    return (
-        <button
-            data-tf-popup="01KK6VXC9VYNFQ08APDEV0YCAA"
-            data-tf-size="100"
-            className="text-sm uppercase tracking-widest text-black/50 underline hover:text-black transition-colors cursor-pointer"
-        >
-            RSVP
-        </button>
     );
 }
 
@@ -208,13 +187,6 @@ export default function Home() {
                         <CountdownUnit value={time.hours} label="hours" />
                         <CountdownUnit value={time.minutes} label="minutes" />
                         <CountdownUnit value={time.seconds} label="seconds" />
-                    </div>
-                    <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-sm uppercase tracking-widest text-black/50">
-                        <TypeformButton />
-                        <Link href="/wedding" className="underline hover:text-black transition-colors">Wedding</Link>
-                        <Link href="/events" className="underline hover:text-black transition-colors">Events</Link>
-                        <Link href="/details" className="underline hover:text-black transition-colors">Details</Link>
-                        <Link href="/faq" className="underline hover:text-black transition-colors">FAQ</Link>
                     </div>
                 </div>
             </main>

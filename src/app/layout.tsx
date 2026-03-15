@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { PatternBorders } from "./pattern-borders";
+import { Nav } from "./nav";
 
 export const metadata: Metadata = {
   title: "Rahul & Sandra",
@@ -22,7 +23,8 @@ export default function RootLayout({
         className="antialiased h-screen overflow-hidden flex flex-col"
       >
         <PatternBorders position="top" />
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto flex flex-col">
+          <Nav />
           {children}
         </div>
         <PatternBorders position="bottom" />

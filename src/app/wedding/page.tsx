@@ -1,8 +1,6 @@
-import Link from "next/link";
-
 export default function Wedding() {
     return (
-        <div className="flex flex-col justify-center items-center text-xl sm:text-2xl relative z-10 min-h-screen">
+        <div className="flex flex-col justify-center items-center text-xl sm:text-2xl relative z-10 ">
             <div className="relative flex flex-col items-center max-w-xl w-full py-16 sm:py-24 px-4 sm:px-8">
 
                 <p className="italic tracking-widest z-10">
@@ -35,13 +33,9 @@ export default function Wedding() {
                     <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Rahul+%26+Sandra%27s+Wedding&dates=20260503T062700Z/20260503T064900Z&location=Heartland+Convention+Center%2C+Chalakudy%2C+Kerala" target="_blank">Google Calendar</a>
                 </div>
 
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.!2d76.33!3d10.30!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sHeartland+Convention+Center!5e0!3m2!1sen!2sin!4v1"
-                    className="mt-16 w-full max-w-md h-56 rounded-sm border-0"
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                />
+                <a href="https://maps.app.goo.gl/98ZJT5wKz2PSG6Mk7" target="_blank">
+                    <img src="/location.png" className="mt-16 w-full max-w-md rounded-sm" alt="Heartland Convention Center location" />
+                </a>
                 <p className="italic text-center tracking-widest leading-relaxed mt-6">
                     Heartland Convention Center, Chalakudy, Keralam
                 </p>
@@ -50,9 +44,16 @@ export default function Wedding() {
                     <a href="https://www.keralatourism.org/" target="_blank">Explore Keralam</a>
                 </div>
 
-                <Link href="/" className="mt-16 text-sm uppercase tracking-widest text-black/50 underline hover:text-black transition-colors">
-                    Back
-                </Link>
+                {/* <div className="relative flex flex-col items-center justify-center w-full mt-16">
+                    <img src="/temple.png" className="w-full max-w-2xl absolute z-0 opacity-10 pointer-events-none" />
+                    <p className="text-center text-[#B14328] leading-relaxed z-10 mt-16 px-4 sm:px-0">
+                        &ldquo;Sam&#257;no mantra&#7717; samiti&#7717; sam&#257;n&#299;&hellip;&rdquo;
+                    </p>
+                    <p className="text-center text-[#B14328] mt-2 z-10 mb-16">
+                        &mdash; Rig Veda 10.191.2
+                    </p>
+                </div> */}
+
             </div>
         </div>
     );

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import { createPortal } from "react-dom";
 import gsap from "gsap";
 
 export default function Events() {
@@ -42,11 +42,10 @@ export default function Events() {
     }, [menuModal, menuVisible]);
 
     return (
-        <div className="flex flex-col justify-center items-center text-xl sm:text-2xl relative z-10 min-h-screen">
+        <div className="flex flex-col justify-center items-center text-xl sm:text-2xl relative z-10 ">
             <div className="relative flex flex-col items-center max-w-xl w-full py-16 sm:py-24 px-4 sm:px-8">
 
                 <div className="flex flex-col items-center w-full z-10">
-                    <h2 className="tracking-widest font-bold uppercase mb-10">Events</h2>
 
                     {/* 1st May group */}
                     <div className="relative w-full max-w-xs">
@@ -140,14 +139,11 @@ export default function Events() {
                     </div>
                 </div>
 
-                <Link href="/" className="mt-16 text-sm uppercase tracking-widest text-black/50 underline hover:text-black transition-colors">
-                    Back
-                </Link>
             </div>
 
             {/* Menu Modal */}
-            {menuModal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center" onClick={closeMenu}>
+            {menuModal && createPortal(
+                <div className="fixed inset-0 z-[100] flex items-center justify-center" onClick={closeMenu}>
                     <div ref={modalBackdropRef} className="absolute inset-0 bg-black/40" />
                     <div ref={modalCardRef} className="relative bg-white max-w-sm w-full mx-4 max-h-[80vh] rounded-sm flex flex-col" onClick={(e) => e.stopPropagation()}>
                         <div className="flex items-center justify-center p-6 pb-4 border-b border-black/10 shrink-0">
@@ -301,7 +297,8 @@ export default function Events() {
                         )}
                         </div>
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
         </div>
     );
