@@ -163,7 +163,7 @@ export default function Home() {
     }, []);
 
     return (
-        <div className="flex flex-col min-h-full">
+        <div className="flex flex-col flex-1">
             <main className="flex flex-col flex-1 w-full items-center justify-center relative">
                 <img
                     ref={imgRef}

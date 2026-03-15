@@ -24,10 +24,11 @@ export default function FAQ() {
 
             <div className="w-full max-w-2xl mx-auto">
                 <p className="font-medium">Contact</p>
-                <a href="mailto:contact@sandraandrahul.com" className="text-black/70 underline hover:text-black transition-colors mt-1 block">contact@sandraandrahul.com</a>
-                <p className="text-black/70 mt-1"><a href="tel:+919947888903" className="underline hover:text-black transition-colors">+91 9947888903</a> <span className="text-black/40">&middot; Harikumar (Rahul&apos;s dad) &middot; WhatsApp available</span></p>
+                <a href="mailto:hello@sandraandrahul.com" className="text-black/70 underline hover:text-black transition-colors mt-1 block">contact@sandraandrahul.com</a>
+                <p className="text-black/70 mt-1"><a href="tel:+919947888903" className="underline hover:text-black transition-colors">+91 9947888903</a> <span className="text-black/40">&middot; Rajalekshmi & Harikumar (Rahul&apos;s parents)  &middot; WhatsApp available</span></p>
             </div>
 
+            {/* <img src="/hoppers.jpeg" className="mt-10 sm:mt-14 w-full max-w-xs rounded-sm opacity-80" alt="Hoppers" /> */}
 
         </div>
     );

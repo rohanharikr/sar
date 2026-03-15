@@ -36,7 +36,7 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
 
 export function Nav() {
     return (
-        <nav className="sticky top-0 z-30 bg-white flex flex-wrap justify-center gap-4 sm:gap-8 text-sm uppercase tracking-widest py-4" style={{ boxShadow: "0 8px 16px 8px white" }}>
+        <nav className="sticky top-0 z-30 bg-white flex flex-wrap justify-center gap-4 sm:gap-8 text-sm uppercase tracking-widest pt-6 pb-8" style={{ boxShadow: "0 16px 32px 16px white" }}>
             <NavLink href="/">Home</NavLink>
             <TypeformButton />
             <NavLink href="/wedding">Wedding</NavLink>
