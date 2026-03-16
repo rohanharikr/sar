@@ -1,6 +1,6 @@
 export default function FAQ() {
     return (
-        <div className="flex flex-1 flex-col items-center justify-center text-xl sm:text-2xl py-8 sm:py-16 px-4 sm:px-0">
+        <div className="flex flex-1 flex-col items-center justify-center text-xl sm:text-2xl pt-10 pb-32 px-4 sm:px-0">
             <div className="flex flex-col items-center w-full max-w-2xl mx-auto mb-10 sm:mb-14">
                 <div className="w-full space-y-6">
                     <div className="opacity-0" style={{ animation: "fade-in-up 0.5s ease forwards" }}>
@@ -28,7 +28,7 @@ export default function FAQ() {
                         <p className="text-black/70 mt-1 text-lg sm:text-xl">
                             Yes! We&apos;re arranging a coach from Trivandrum.
                             <br/>
-                            2nd May, 10:00 AM <span className="text-black/40">&middot; please arrive by 9:30 AM</span>
+                            2<sup className="text-xs align-super">nd</sup> May, 10:00 AM <span className="text-black/40">&middot; please arrive by 9:30 AM</span>
                             <br/>
                             Pickup: <a href="https://share.google/CyTsbzAzNwl7RQXHo" target="_blank" className="underline hover:text-black transition-colors">QRS Pongumoodu</a>
                             <br/>
@@ -61,7 +61,7 @@ export default function FAQ() {
             <div className="w-full max-w-2xl mx-auto opacity-0" style={{ animation: "fade-in-up 0.5s ease 0.6s forwards" }}>
                 <p className="font-medium">Contact</p>
                 <a href="mailto:hi@sandraandrahul.com" className="text-black/70 underline hover:text-black transition-colors mt-1 block">hi@sandraandrahul.com</a>
-                <p className="text-black/70 mt-1 text-lg sm:text-xl"><a href="tel:+919947888903" className="underline hover:text-black transition-colors">+91 9947888903</a> <span className="text-black/40">&middot; Rajalekshmi & Harikumar (Rahul&apos;s parents)  &middot; WhatsApp available</span></p>
+                <p className="text-black/70 mt-1 text-lg sm:text-xl"><a href="https://wa.me/919947888903" target="_blank" className="underline hover:text-black transition-colors">+91 9947888903</a> <span className="text-black/40">&middot; Rajalekshmi & Harikumar (Rahul&apos;s parents)</span></p>
             </div>
 
             {/* <img src="/hoppers.jpeg" className="mt-10 sm:mt-14 w-full max-w-xs rounded-sm opacity-80" alt="Hoppers" /> */}
