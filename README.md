@@ -1,5 +1,7 @@
 # Kerala Wedding Website
 
+![Kerala Wedding Website](reference/readme.png)
+
 A beautiful, animated wedding website and print-ready wedding card — all at zero cost. The only expense is a custom domain, but you can just use the free Vercel domain too.
 
 The design incorporates traditional Kerala kasavu (gold border) elements throughout, creating a coherent visual identity across the wedding card and website. Scanning the QR code on the card takes guests straight to the website — a seamless experience from print to screen.
