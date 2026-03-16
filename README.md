@@ -51,7 +51,7 @@ Fonts used (both open source):
 
 ## Creating the Watercolor Art
 
-The watercolor-style venue artwork was generated using Gemini AI or DALL-E. You can create your own using this prompt:
+The watercolor-style venue artwork was generated using ChatGPT or Gemini AI. You can create your own using this prompt:
 
 > I'm attaching two images. The first image is a real photo of the venue where my wedding is going to take place. I want the venue rendered in the same watercolor style — hand-drawn, washed-out — as the second reference image.
 
