@@ -1,4 +1,4 @@
-# Kerala Wedding Website
+# Kerala Wedding Website + Wedding Card
 
 ![Kerala Wedding Website](reference/readme.png)
 
