@@ -43,7 +43,7 @@ export default function Events() {
 
     return (
         <div className="flex flex-col justify-center items-center text-xl sm:text-2xl relative z-10 ">
-            <div className="relative flex flex-col items-center max-w-xl w-full py-16 sm:py-24 px-4 sm:px-8">
+            <div className="relative flex flex-col items-center max-w-xl w-full pb-32 pt-8 px-4 sm:px-8">
 
                 <div className="flex flex-col items-center w-full z-10">
 

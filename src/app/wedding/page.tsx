@@ -1,7 +1,7 @@
 export default function Wedding() {
     return (
         <div className="flex flex-col justify-center items-center text-xl sm:text-2xl relative z-10 ">
-            <div className="relative flex flex-col items-center max-w-xl w-full py-16 sm:py-24 px-4 sm:px-8">
+            <div className="relative flex flex-col items-center max-w-xl w-full pt-8 pb-32 px-4 sm:px-8">
 
                 <p className="italic tracking-widest z-10">
                     Together with their families
