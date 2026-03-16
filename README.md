@@ -14,7 +14,7 @@ Live website: [sandraandrahul.com](https://sandraandrahul.com)
 
 - **Website** — animated, responsive wedding website (this repo)
 - **Wedding Card** — print-ready A5 wedding card designed in Figma ([open in Figma](https://www.figma.com/design/LBlEwmEGPJTh9Vu74BwkJO/Kerala-Wedding-Card?node-id=0-1&p=f&t=Im9vjmnopLF65e59-0))
-- **Artwork** — watercolor-style venue art generated with AI (see [Creating the Watercolor Art](#creating-the-watercolor-art) below)
+
 
 ## Features
 
@@ -62,7 +62,7 @@ The watercolor-style venue artwork was generated using ChatGPT or Gemini AI. You
 
 If you found the wedding card design, artwork workflow, or website template helpful, please consider supporting Rahul & Sandra as they start their new journey together.
 
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-yellow?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/uw1ex9o)
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/uw1ex9o)
 
 ## License
 
