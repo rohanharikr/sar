@@ -113,10 +113,10 @@ export default function Home() {
                 x: 0.05 + rand() * 0.9,
                 y: 0.05 + rand() * 0.9,
                 r: 0,
-                delay: i * 0.08,
-                duration: 2 + rand() * 1,
+                delay: i * 0.06,
+                duration: 1.6 + rand() * 0.8,
             }));
-            drops[0] = { x: 0.45 + rand() * 0.1, y: 0.45 + rand() * 0.1, r: 0, delay: 0, duration: 2.5 + rand() * 0.5 };
+            drops[0] = { x: 0.45 + rand() * 0.1, y: 0.45 + rand() * 0.1, r: 0, delay: 0, duration: 2 + rand() * 0.4 };
 
             const maxR = Math.sqrt(w * w + h * h) * 0.7;
 
@@ -140,7 +140,7 @@ export default function Home() {
                 ctx.globalCompositeOperation = 'source-over';
             }
 
-            const tl = gsap.timeline({ delay: 0.15 });
+            const tl = gsap.timeline({ delay: 0.1 });
 
             drops.forEach(d => {
                 tl.to(d, {
@@ -151,8 +151,8 @@ export default function Home() {
                 }, d.delay);
             });
 
-            tl.to(canvas, { opacity: 0.1, duration: 1, ease: 'power2.inOut' }, 1.2);
-            tl.to(text, { opacity: 1, duration: 1, ease: 'power2.inOut' }, 1.2);
+            tl.to(canvas, { opacity: 0.1, duration: 0.8, ease: 'power2.inOut' }, 1.0);
+            tl.to(text, { opacity: 1, duration: 0.8, ease: 'power2.inOut' }, 1.0);
 
             tlRef.current = tl;
         };

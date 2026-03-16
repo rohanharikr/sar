@@ -6,6 +6,9 @@ import { Nav } from "./nav";
 export const metadata: Metadata = {
   title: "Rahul & Sandra",
   description: "Join us on our wedding on 3rd May 2026 at Chalakudy, Kerala.",
+  openGraph: {
+    images: ["/plain-main.png"],
+  },
 };
 
 export default function RootLayout({
