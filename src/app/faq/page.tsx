@@ -68,7 +68,6 @@ export default function FAQ() {
                 <a href="/wedding-card.pdf" download className="font-medium underline hover:text-black/70 transition-colors">Download Wedding Card</a>
             </div>
 
-            {/* <img src="/hoppers.jpeg" className="mt-10 sm:mt-14 w-full max-w-xs rounded-sm opacity-80" alt="Hoppers" /> */}
 
         </div>
     );

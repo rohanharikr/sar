@@ -4,8 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import confetti from "canvas-confetti";
 
+// Set to true to skip all animations during development
 const DISABLE_ANIMATIONS = false;
 
+// Wedding date and time (with timezone) — used for the countdown timer
 const TARGET = new Date("2026-05-03T11:57:00+05:30").getTime();
 
 function getTimeLeft() {
@@ -76,14 +78,14 @@ export default function Home() {
                     angle: 60,
                     spread: 55,
                     origin: { x: 0, y: 0 },
-                    colors: ['#F7CE76', '#BE8E2D', '#B14328'],
+                    colors: ['#F7CE76', '#BE8E2D', '#B14328'], // Gold, dark gold, red — match your theme
                 });
                 confetti({
                     particleCount: 3,
                     angle: 120,
                     spread: 55,
                     origin: { x: 1, y: 0 },
-                    colors: ['#F7CE76', '#BE8E2D', '#B14328'],
+                    colors: ['#F7CE76', '#BE8E2D', '#B14328'], // Gold, dark gold, red — match your theme
                 });
                 if (Date.now() < end) requestAnimationFrame(frame);
             };
@@ -98,6 +100,9 @@ export default function Home() {
         const text = textRef.current;
         if (!canvas || !img || !text) return;
 
+        // Watercolor reveal: radial gradient "drops" expand across a canvas,
+        // composited with the hero image to create a paint-spreading effect.
+        // Once revealed, the canvas fades out and the text content fades in.
         const imgEl = new Image();
         imgEl.src = 'main.png';
         imgEl.onload = () => {

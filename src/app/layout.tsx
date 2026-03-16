@@ -3,6 +3,7 @@ import "./globals.css";
 import { PatternBorders } from "./pattern-borders";
 import { Nav } from "./nav";
 
+// Update with your names, date, venue, and OG image
 export const metadata: Metadata = {
   title: "Rahul & Sandra",
   description: "Join us on our wedding on 3rd May 2026 at Chalakudy, Kerala.",
@@ -19,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script defer src="https://cloud.umami.is/script.js" data-website-id="ddb46c23-85be-4499-9311-d67e40db88bf"></script>
+        {/* Optional: add your analytics script here */}
         <link rel="icon" href="/icon.png" type="image/png" />
         <link rel="preconnect" href="https://github.io/" />
         <link rel="stylesheet" href="https://vetrivelcsamy.github.io/cheltenham-classic/cheltenhamclassic.css" />

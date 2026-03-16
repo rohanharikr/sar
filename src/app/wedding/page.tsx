@@ -28,6 +28,8 @@ export default function Wedding() {
                     between 11:57am and 12:19pm
                 </p>
 
+                {/* Calendar links: ICS data URI for Apple Calendar, URL for Google Calendar.
+                    Update the dates (DTSTART/DTEND), summary, and location for your wedding. */}
                 <div className="flex gap-4 sm:gap-8 uppercase text-sm tracking-widest mt-6 text-black/65 underline opacity-0" style={{ animation: "fade-in-up 0.35s ease 0.5s forwards" }}>
                     <a href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0AVERSION%3A2.0%0APRODID%3A-//Wedding//EN%0ABEGIN%3AVEVENT%0ADTSTART%3A20260503T062700Z%0ADTEND%3A20260503T064900Z%0ASUMMARY%3ARahul %26 Sandra's Wedding%0ALOCATION%3AHeartland Convention Center%2C Chalakudy%2C Kerala%0AEND%3AVEVENT%0AEND%3AVCALENDAR" download="rahul-sandra-wedding.ics">Apple Calendar</a>
                     <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Rahul+%26+Sandra%27s+Wedding&dates=20260503T062700Z/20260503T064900Z&location=Heartland+Convention+Center%2C+Chalakudy%2C+Kerala" target="_blank">Google Calendar</a>
@@ -44,15 +46,6 @@ export default function Wedding() {
                     <a href="https://www.keralatourism.org/" target="_blank">Explore Keralam</a>
                 </div>
 
-                {/* <div className="relative flex flex-col items-center justify-center w-full mt-16">
-                    <img src="/temple.png" className="w-full max-w-2xl absolute z-0 opacity-10 pointer-events-none" />
-                    <p className="text-center text-[#B14328] leading-relaxed z-10 mt-16 px-4 sm:px-0">
-                        &ldquo;Sam&#257;no mantra&#7717; samiti&#7717; sam&#257;n&#299;&hellip;&rdquo;
-                    </p>
-                    <p className="text-center text-[#B14328] mt-2 z-10 mb-16">
-                        &mdash; Rig Veda 10.191.2
-                    </p>
-                </div> */}
 
             </div>
         </div>
