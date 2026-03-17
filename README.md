@@ -72,6 +72,11 @@ The watercolor-style venue artwork was generated using ChatGPT or Gemini AI. You
 - **Image 1:** Attach a photo of your venue
 - **Image 2:** Use the reference image included in the `reference/` folder (`watercolor-reference.png`)
 
+<p>
+  <img src="reference/original.png" width="48%" alt="Original venue photo" />
+  <img src="reference/watercolor.png" width="48%" alt="AI-generated watercolor version" />
+</p>
+
 ## Support
 
 If you found the wedding card design, artwork workflow, or website template helpful, please consider supporting Rahul & Sandra as they start their new journey together.
