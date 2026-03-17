@@ -55,6 +55,8 @@ Here's how ours turned out in print:
   <img src="reference/printed-2.jpeg" width="48%" alt="Printed wedding card back" />
 </p>
 
+We used [Printed.com](https://www.printed.com) for ours — their service was great. We went with the gatefold option on Tintoretto card texture for that authentic watercolor feel.
+
 > **Note:** In the second photo, the outer border was printed incorrectly — that was a mistake on our end. The Figma design has since been updated so this shouldn't happen again.
 
 Fonts used (both open source):
