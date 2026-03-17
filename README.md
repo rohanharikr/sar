@@ -48,6 +48,15 @@ The wedding card is a print-ready A5 design available as a Figma file:
 
 [Open in Figma](https://www.figma.com/design/LBlEwmEGPJTh9Vu74BwkJO/Kerala-Wedding-Card?node-id=0-1&p=f&t=Im9vjmnopLF65e59-0)
 
+Here's how ours turned out in print:
+
+<p>
+  <img src="reference/printed.jpeg" width="48%" alt="Printed wedding card front" />
+  <img src="reference/printed-2.jpeg" width="48%" alt="Printed wedding card back" />
+</p>
+
+> **Note:** In the second photo, the outer border was printed incorrectly — that was a mistake on our end. The Figma design has since been updated so this shouldn't happen again.
+
 Fonts used (both open source):
 - [Cormorant Garamond](https://fonts.google.com/specimen/Cormorant+Garamond)
 - [Cheltenham Classic](https://github.com/vetrivelcsamy/cheltenham-classic)
