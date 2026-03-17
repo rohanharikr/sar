@@ -2,7 +2,9 @@
 
 ![Kerala Wedding Website](reference/readme.png)
 
-A beautiful, animated wedding website and print-ready wedding card — all at zero cost. The only expense is a custom domain, but you can just use the free Vercel domain too.
+A beautiful, animated wedding website and print-ready wedding card — at zero cost and zero coding knowledge required. The only expense is a custom domain, but you can just use the free Vercel domain too.
+
+No coding experience? No problem. Just set up an AI coding agent like [Claude Code](https://claude.ai/code), tell it what you want to change, and it'll walk you through everything — from customizing the content to deploying the site.
 
 The design incorporates traditional Kerala kasavu (gold border) elements throughout, creating a coherent visual identity across the wedding card and website. Scanning the QR code on the card takes guests straight to the website — a seamless experience from print to screen.
 
@@ -10,11 +12,12 @@ I'm Rohan, and I created this for my brother Rahul and his wife Sandra's wedding
 
 Live website: [sandraandrahul.com](https://sandraandrahul.com)
 
+Built with Next.js, Tailwind CSS, and GSAP.
+
 ## What's Included
 
 - **Website** — animated, responsive wedding website (this repo)
 - **Wedding Card** — print-ready A5 wedding card designed in Figma ([open in Figma](https://www.figma.com/design/LBlEwmEGPJTh9Vu74BwkJO/Kerala-Wedding-Card?node-id=0-1&p=f&t=Im9vjmnopLF65e59-0))
-
 
 ## Features
 
