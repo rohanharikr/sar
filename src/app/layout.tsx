@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Optional: add your analytics script here */}
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="ddb46c23-85be-4499-9311-d67e40db88bf"></script>
         <link rel="icon" href="/icon.png" type="image/png" />
         <link rel="preconnect" href="https://github.io/" />
         <link rel="stylesheet" href="https://vetrivelcsamy.github.io/cheltenham-classic/cheltenhamclassic.css" />
