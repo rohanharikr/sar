@@ -8,7 +8,7 @@ No coding experience? No problem. Just set up an AI coding agent like [Claude Co
 
 The design incorporates traditional Kerala kasavu (gold border) elements throughout, creating a coherent visual identity across the wedding card and website. Scanning the QR code on the card takes guests straight to the website — a seamless experience from print to screen.
 
-I'm Rohan, and I created this for my brother Rahul and his wife Sandra's wedding. Feel free to fork it and make it your own.
+I'm Rohan, and I created this for my brother Rahul & Sandra's wedding. Feel free to fork it and make it your own.
 
 Live website: [sandraandrahul.com](https://sandraandrahul.com)
 
