@@ -26,6 +26,11 @@ export default function RootLayout({
         <link rel="icon" href="/icon.png" type="image/png" />
         <link rel="preconnect" href="https://github.io/" />
         <link rel="stylesheet" href="https://vetrivelcsamy.github.io/cheltenham-classic/cheltenhamclassic.css" />
+        <script dangerouslySetInnerHTML={{ __html: `
+          document.fonts.ready.then(function() {
+            document.body.classList.add('fonts-loaded');
+          });
+        `}} />
       </head>
       <body
         className="antialiased h-screen overflow-hidden flex flex-col"
