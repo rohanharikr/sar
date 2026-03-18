@@ -36,7 +36,7 @@ export default function RootLayout({
         className="antialiased h-screen overflow-hidden flex flex-col"
       >
         <PatternBorders position="top" />
-        <div className="flex-1 overflow-y-auto flex flex-col">
+        <div className="flex-1 overflow-y-scroll flex flex-col">
           <Nav />
           {children}
         </div>
