@@ -261,6 +261,7 @@ export default function Events() {
                                 </ul>
                                 <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Payasam</p>
                                 <ul className="text-base text-center leading-7 text-black/70 mb-4">
+                                    <li>Paal Ada Payasam</li>
                                     <li>Palada Pradhaman</li>
                                     <li>Ada Pradhaman</li>
                                 </ul>
