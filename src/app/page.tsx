@@ -22,7 +22,7 @@ function getTimeLeft() {
 
 function RollingDigit({ digit }: { digit: number }) {
     return (
-        <span className="inline-block overflow-hidden" style={{ height: "1.2em", width: "0.6em", lineHeight: "1.2" }}>
+        <span className="inline-block" style={{ height: "1.2em", width: "0.6em", lineHeight: "1.2", overflow: "hidden" }}>
             <span
                 className="inline-flex flex-col transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateY(${-digit * 1.2}em)` }}
