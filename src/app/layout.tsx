@@ -34,6 +34,7 @@ export default function RootLayout({
       </head>
       <body
         className="antialiased h-screen overflow-hidden flex flex-col"
+        suppressHydrationWarning
       >
         <PatternBorders position="top" />
         <div className="flex-1 overflow-y-scroll flex flex-col">

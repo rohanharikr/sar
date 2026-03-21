@@ -22,17 +22,13 @@ function getTimeLeft() {
 
 function RollingDigit({ digit }: { digit: number }) {
     return (
-        <span style={{ display: "inline-block", height: "1.2em", width: "0.6em", lineHeight: "1.2", overflow: "hidden" }}>
+        <span className="inline-block overflow-hidden" style={{ height: "1.2em", width: "0.6em", lineHeight: "1.2" }}>
             <span
-                style={{
-                    display: "inline-flex",
-                    flexDirection: "column",
-                    transition: "transform 0.5s ease-in-out",
-                    transform: `translateY(${-digit * 1.2}em)`,
-                }}
+                className="inline-flex flex-col transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateY(${-digit * 1.2}em)` }}
             >
                 {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
-                    <span key={n} style={{ display: "inline-block", height: "1.2em", lineHeight: "1.2" }}>
+                    <span key={n} className="inline-block" style={{ height: "1.2em", lineHeight: "1.2" }}>
                         {n}
                     </span>
                 ))}
@@ -57,6 +53,7 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
 }
 
 export default function Home() {
+    const [mounted, setMounted] = useState(false);
     const [time, setTime] = useState(getTimeLeft);
     const confettiFired = useRef(false);
     const imgRef = useRef<HTMLImageElement>(null);
@@ -65,6 +62,7 @@ export default function Home() {
     const tlRef = useRef<gsap.core.Timeline | null>(null);
 
     useEffect(() => {
+        setMounted(true);
         const id = setInterval(() => setTime(getTimeLeft()), 1000);
         return () => clearInterval(id);
     }, []);
@@ -192,10 +190,14 @@ export default function Home() {
                     <span className="text-base sm:text-xl italic tracking-widest text-black/65">the wedding of</span>
                     <h1 className="text-4xl sm:text-5xl md:text-7xl mt-4 sm:mt-6">Rahul&nbsp;&nbsp;&nbsp;<span className="italic">&</span>&nbsp;&nbsp;&nbsp;Sandra</h1>
                     <div className="my-8 sm:my-16 flex flex-row gap-4 sm:gap-10">
-                        <CountdownUnit value={time.days} label="days" />
-                        <CountdownUnit value={time.hours} label="hours" />
-                        <CountdownUnit value={time.minutes} label="minutes" />
-                        <CountdownUnit value={time.seconds} label="seconds" />
+                        {mounted ? (
+                            <>
+                                <CountdownUnit value={time.days} label="days" />
+                                <CountdownUnit value={time.hours} label="hours" />
+                                <CountdownUnit value={time.minutes} label="minutes" />
+                                <CountdownUnit value={time.seconds} label="seconds" />
+                            </>
+                        ) : null}
                     </div>
                 </div>
             </main>
