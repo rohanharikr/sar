@@ -22,13 +22,17 @@ function getTimeLeft() {
 
 function RollingDigit({ digit }: { digit: number }) {
     return (
-        <span className="inline-block" style={{ height: "1.2em", width: "0.6em", lineHeight: "1.2", overflow: "hidden" }}>
+        <span style={{ display: "inline-block", height: "1.2em", width: "0.6em", lineHeight: "1.2", overflow: "hidden" }}>
             <span
-                className="inline-flex flex-col transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateY(${-digit * 1.2}em)` }}
+                style={{
+                    display: "inline-flex",
+                    flexDirection: "column",
+                    transition: "transform 0.5s ease-in-out",
+                    transform: `translateY(${-digit * 1.2}em)`,
+                }}
             >
                 {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
-                    <span key={n} className="inline-block" style={{ height: "1.2em", lineHeight: "1.2" }}>
+                    <span key={n} style={{ display: "inline-block", height: "1.2em", lineHeight: "1.2" }}>
                         {n}
                     </span>
                 ))}
