@@ -113,7 +113,7 @@ export default function Events() {
                                 <img src="/first-dinner.png" className="w-auto h-16 sm:h-24 mb-1" />
                                 <p className="font-medium italic">Dinner</p>
                                 <p className="text-xl text-black/50">7:30pm</p>
-                                <button onClick={() => openMenu("Sangeeth")} className="mt-2 text-xs uppercase tracking-widest text-black/50 underline hover:text-black transition-colors cursor-pointer">Menu</button>
+                                <button onClick={() => openMenu("Sangeeth")} className="mt-2 text-xs uppercase tracking-widest border border-[#BE8E2D] text-[#BE8E2D] hover:bg-[#BE8E2D] hover:text-white transition-colors cursor-pointer rounded-sm px-3 py-1">Menu</button>
                             </div>
                             <div data-circle className="absolute left-1/2 -translate-x-1/2 top-[45%] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                             <div className="w-1/2" />
@@ -143,7 +143,7 @@ export default function Events() {
                                 <img src="/lunch.png" className="w-auto h-14 sm:h-20 mb-1" />
                                 <p className="font-medium italic">Lunch</p>
                                 <p className="text-xl text-black/50">12:45pm</p>
-                                <button onClick={() => openMenu("Sadya")} className="mt-2 text-xs uppercase tracking-widest text-black/50 underline hover:text-black transition-colors cursor-pointer">Menu</button>
+                                <button onClick={() => openMenu("Sadya")} className="mt-2 text-xs uppercase tracking-widest border border-[#BE8E2D] text-[#BE8E2D] hover:bg-[#BE8E2D] hover:text-white transition-colors cursor-pointer rounded-sm px-3 py-1">Menu</button>
                             </div>
                             <div data-circle className="absolute left-1/2 -translate-x-1/2 top-[45%] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                             <div className="w-1/2" />
@@ -176,7 +176,7 @@ export default function Events() {
                                 <img src="/second-dinner.png" className="w-auto h-16 sm:h-24 mb-1" />
                                 <p className="font-medium italic">Dinner</p>
                                 <p className="text-xl text-black/50">8pm</p>
-                                <button onClick={() => openMenu("Reception Dinner")} className="mt-2 text-xs uppercase tracking-widest text-black/50 underline hover:text-black transition-colors cursor-pointer">Menu</button>
+                                <button onClick={() => openMenu("Reception Dinner")} className="mt-2 text-xs uppercase tracking-widest border border-[#BE8E2D] text-[#BE8E2D] hover:bg-[#BE8E2D] hover:text-white transition-colors cursor-pointer rounded-sm px-3 py-1">Menu</button>
                             </div>
                         </div>
                     </div>
@@ -223,8 +223,12 @@ export default function Events() {
                                     <li>Pappad</li>
                                 </ul>
                                 <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Dessert</p>
-                                <ul className="text-base text-center leading-7 text-black/70">
+                                <ul className="text-base text-center leading-7 text-black/70 mb-4">
                                     <li>Ice Cream</li>
+                                </ul>
+                                <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Beverages</p>
+                                <ul className="text-base text-center leading-7 text-black/70">
+                                    <li>Bottled Mineral Water</li>
                                 </ul>
                             </>
                         )}
@@ -265,9 +269,13 @@ export default function Events() {
                                     <li>Ada Pradhaman</li>
                                 </ul>
                                 <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Sweets</p>
-                                <ul className="text-base text-center leading-7 text-black/70">
+                                <ul className="text-base text-center leading-7 text-black/70 mb-4">
                                     <li>Boli</li>
                                     <li>Banana</li>
+                                </ul>
+                                <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Beverages</p>
+                                <ul className="text-base text-center leading-7 text-black/70">
+                                    <li>Bottled Mineral Water</li>
                                 </ul>
                             </>
                         )}
@@ -334,6 +342,7 @@ export default function Events() {
                                 <p className="text-sm uppercase tracking-widest text-black/40 mb-2 text-center">Beverages</p>
                                 <ul className="text-base text-center leading-7 text-black/70">
                                     <li>Tea &amp; Coffee</li>
+                                    <li>Bottled Mineral Water</li>
                                 </ul>
                             </>
                         )}

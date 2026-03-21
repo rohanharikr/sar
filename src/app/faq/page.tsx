@@ -34,6 +34,13 @@ export default function FAQ() {
                             <br/>
                             <span className="text-black/40">Contact us below to reserve seats</span>
                         </p>
+                        <p className="text-black/70 mt-3 text-lg sm:text-xl">
+                            Also from Mavelikara:
+                            <br/>
+                            3<sup className="text-xs align-super">rd</sup> May, 5:30 AM
+                            <br/>
+                            <span className="text-black/40">Contact us below for pickup details</span>
+                        </p>
                     </div>
                     <div className="opacity-0" style={{ animation: "fade-in-up 0.35s ease 0.21s forwards" }}>
                         <p className="font-medium">What should we wear?</p>
