@@ -35,7 +35,7 @@ export default function FAQ() {
                             <span className="text-black/40">Contact us below to reserve seats</span>
                         </p>
                         <p className="text-black/70 mt-3 text-lg sm:text-xl">
-                            Also from Mavelikara:
+                            Also from Mavelikara (Karazhma Temple premises):
                             <br/>
                             3<sup className="text-xs align-super">rd</sup> May, 5:30 AM
                             <br/>
