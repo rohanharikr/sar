@@ -25,22 +25,14 @@ export default function FAQ() {
                     </div>
                     <div className="opacity-0" style={{ animation: "fade-in-up 0.35s ease 0.14s forwards" }}>
                         <p className="font-medium">Do you provide transportation from Trivandrum?</p>
-                        <p className="text-black/70 mt-1 text-lg sm:text-xl">
-                            Yes! We&apos;re arranging a coach from Trivandrum.
-                            <br/>
-                            2<sup className="text-xs align-super">nd</sup> May, 10:00 AM <span className="text-black/40">&middot; please arrive by 9:30 AM</span>
-                            <br/>
-                            Pickup: <a href="https://share.google/CyTsbzAzNwl7RQXHo" target="_blank" className="underline hover:text-black transition-colors">QRS Pongumoodu</a>
-                            <br/>
-                            <span className="text-black/40">Contact us below to reserve seats</span>
-                        </p>
-                        <p className="text-black/70 mt-3 text-lg sm:text-xl">
-                            Also from Mavelikara (Karazhma Temple premises):
-                            <br/>
-                            3<sup className="text-xs align-super">rd</sup> May, 5:30 AM
-                            <br/>
-                            <span className="text-black/40">Contact us below for pickup details</span>
-                        </p>
+                        <div className="text-black/70 mt-1 text-lg sm:text-xl">
+                            Yes! We&apos;re arranging coaches.
+                            <ul className="list-disc list-inside mt-1">
+                                <li>From Trivandrum (<a href="https://share.google/CyTsbzAzNwl7RQXHo" target="_blank" className="underline hover:text-black transition-colors">QRS Pongumoodu</a>) &middot; 2<sup className="text-xs align-super">nd</sup> May, 10:00 AM</li>
+                                <li>From Mavelikara (<a href="https://share.google/jReEKT7ES3H73QJ2R" target="_blank" className="underline hover:text-black transition-colors">Karazhma Temple premises</a>) &middot; 3<sup className="text-xs align-super">rd</sup> May, 5:30 AM</li>
+                            </ul>
+                            <span className="text-black/40">Please arrive 30 minutes before departure &middot; Contact us below to reserve seats</span>
+                        </div>
                     </div>
                     <div className="opacity-0" style={{ animation: "fade-in-up 0.35s ease 0.21s forwards" }}>
                         <p className="font-medium">What should we wear?</p>
@@ -51,12 +43,12 @@ export default function FAQ() {
                             <br/>
                             Reception: Casual
                             <br/>
-                            <span className="text-black/40">May in Kerala is warm and humid (30&ndash;35&deg;C) &mdash; light, breathable fabrics recommended.</span>
+                            <span className="text-black/40">May in Kerala is warm and humid (30&ndash;35&deg;C) &mdash; light,<br/>breathable fabrics recommended.</span>
                         </p>
                     </div>
                     <div className="opacity-0" style={{ animation: "fade-in-up 0.35s ease 0.28s forwards" }}>
                         <p className="font-medium">Should we bring a gift?</p>
-                        <p className="text-black/70 mt-1 text-lg sm:text-xl">Your presence is the greatest gift we could ask for.</p>
+                        <p className="text-black/70 mt-1 text-lg sm:text-xl">No, your presence is the greatest gift we could ask for!</p>
                     </div>
                     <div className="opacity-0" style={{ animation: "fade-in-up 0.35s ease 0.35s forwards" }}>
                         <p className="font-medium">Is parking available at the venue?</p>
