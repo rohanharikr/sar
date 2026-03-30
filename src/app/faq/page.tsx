@@ -29,9 +29,9 @@ export default function FAQ() {
                             Yes! We&apos;re arranging coaches.
                             <ul className="list-disc list-inside mt-1">
                                 <li>From Trivandrum (<a href="https://share.google/CyTsbzAzNwl7RQXHo" target="_blank" className="underline hover:text-black transition-colors">QRS Pongumoodu</a>) &middot; 2<sup className="text-xs align-super">nd</sup> May, 10:00 AM</li>
-                                <li>From Mavelikara (<a href="https://share.google/jReEKT7ES3H73QJ2R" target="_blank" className="underline hover:text-black transition-colors">Karazhma Temple premises</a>) &middot; 3<sup className="text-xs align-super">rd</sup> May, 5:30 AM</li>
+                                <li>From Mavelikara &middot; 3<sup className="text-xs align-super">rd</sup> May, 5:30 AM</li>
                             </ul>
-                            <span className="text-black/40">Please arrive 30 minutes before departure &middot; Contact us below to reserve seats</span>
+                            <span className="text-black/40">Please arrive 15 minutes before departure &middot; Contact us below to reserve seats</span>
                         </div>
                     </div>
                     <div className="opacity-0" style={{ animation: "fade-in-up 0.35s ease 0.21s forwards" }}>
@@ -64,7 +64,7 @@ export default function FAQ() {
             </div>
 
             <div className="w-full max-w-2xl mx-auto mt-10 sm:mt-14 opacity-0" style={{ animation: "fade-in-up 0.35s ease 0.49s forwards" }}>
-                <a href="/wedding-card.pdf" download className="font-medium underline hover:text-black/70 transition-colors">Download Wedding Card</a>
+                <a href="/wedding-card.pdf" download className="inline-flex items-center gap-1.5 px-6 pt-2.5 pb-1.5 border border-black/20 rounded-full font-medium hover:bg-black hover:text-white transition-all duration-300" style={{ fontSize: "22px" }}>Download Wedding Card</a>
             </div>
 
 

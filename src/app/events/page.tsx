@@ -113,7 +113,7 @@ export default function Events() {
                                 <img src="/first-dinner.png" className="w-auto h-16 sm:h-24 mb-1" />
                                 <p className="font-medium italic">Dinner</p>
                                 <p className="text-xl text-black/50">7:30pm</p>
-                                <button onClick={() => openMenu("Sangeeth")} className="mt-2 text-xs uppercase tracking-widest border border-[#BE8E2D] text-[#BE8E2D] hover:bg-[#BE8E2D] hover:text-white transition-colors cursor-pointer rounded-sm px-3 py-1">Menu</button>
+                                <button onClick={() => openMenu("Sangeeth")} className="mt-2 text-lg border border-black/20 rounded-full font-medium hover:bg-black hover:text-white transition-all duration-300 cursor-pointer px-4 py-1">Menu</button>
                             </div>
                             <div data-circle className="absolute left-1/2 -translate-x-1/2 top-[45%] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                             <div className="w-1/2" />
@@ -143,7 +143,7 @@ export default function Events() {
                                 <img src="/lunch.png" className="w-auto h-14 sm:h-20 mb-1" />
                                 <p className="font-medium italic">Lunch</p>
                                 <p className="text-xl text-black/50">12:45pm</p>
-                                <button onClick={() => openMenu("Sadya")} className="mt-2 text-xs uppercase tracking-widest border border-[#BE8E2D] text-[#BE8E2D] hover:bg-[#BE8E2D] hover:text-white transition-colors cursor-pointer rounded-sm px-3 py-1">Menu</button>
+                                <button onClick={() => openMenu("Sadya")} className="mt-2 text-lg border border-black/20 rounded-full font-medium hover:bg-black hover:text-white transition-all duration-300 cursor-pointer px-4 py-1">Menu</button>
                             </div>
                             <div data-circle className="absolute left-1/2 -translate-x-1/2 top-[45%] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                             <div className="w-1/2" />
@@ -176,7 +176,7 @@ export default function Events() {
                                 <img src="/second-dinner.png" className="w-auto h-16 sm:h-24 mb-1" />
                                 <p className="font-medium italic">Dinner</p>
                                 <p className="text-xl text-black/50">8pm</p>
-                                <button onClick={() => openMenu("Reception Dinner")} className="mt-2 text-xs uppercase tracking-widest border border-[#BE8E2D] text-[#BE8E2D] hover:bg-[#BE8E2D] hover:text-white transition-colors cursor-pointer rounded-sm px-3 py-1">Menu</button>
+                                <button onClick={() => openMenu("Reception Dinner")} className="mt-2 text-lg border border-black/20 rounded-full font-medium hover:bg-black hover:text-white transition-all duration-300 cursor-pointer px-4 py-1">Menu</button>
                             </div>
                         </div>
                     </div>
