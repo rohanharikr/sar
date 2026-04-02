@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
     const pathname = usePathname();
@@ -11,6 +12,15 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
             {children}
         </Link>
     );
+}
+
+export function ScrollReset() {
+    const pathname = usePathname();
+    useEffect(() => {
+        const scrollContainer = document.querySelector(".overflow-y-scroll");
+        if (scrollContainer) scrollContainer.scrollTop = 0;
+    }, [pathname]);
+    return null;
 }
 
 export function Nav() {

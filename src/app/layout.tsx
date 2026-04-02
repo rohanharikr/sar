@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { PatternBorders } from "./pattern-borders";
-import { Nav } from "./nav";
+import { Nav, ScrollReset } from "./nav";
 
 // Update with your names, date, venue, and OG image
 export const metadata: Metadata = {
@@ -38,6 +38,7 @@ export default function RootLayout({
       >
         <PatternBorders position="top" />
         <div className="flex-1 overflow-y-scroll flex flex-col">
+          <ScrollReset />
           <Nav />
           {children}
         </div>
