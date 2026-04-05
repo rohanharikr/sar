@@ -8,7 +8,8 @@ import confetti from "canvas-confetti";
 const DISABLE_ANIMATIONS = false;
 
 // Wedding date and time (with timezone) — used for the countdown timer
-const TARGET = new Date("2026-05-03T11:57:00+05:30").getTime();
+// const TARGET = new Date("2026-05-03T11:57:00+05:30").getTime();
+const TARGET = 0; // TBD — wedding date postponed
 
 function getTimeLeft() {
     const diff = Math.max(0, TARGET - Date.now());

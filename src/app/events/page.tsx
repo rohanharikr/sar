@@ -95,7 +95,8 @@ export default function Events() {
                         <div data-line className="absolute left-1/2 -translate-x-1/2 top-[166px] bottom-[90px] w-px bg-black origin-top" />
 
                         <div className="relative flex pb-4">
-                            <p data-date className="absolute whitespace-nowrap top-[40px] left-0">1<sup className="text-xs">st</sup> May</p>
+                            {/* <p data-date className="absolute whitespace-nowrap top-[40px] left-0">1<sup className="text-xs">st</sup> May</p> */}
+                            <p data-date className="absolute whitespace-nowrap top-[40px] left-0">TBD</p>
                             <svg data-dash className="absolute left-[80px] top-[52px]" width="80" height="114" fill="none">
                                 <line x1="0" y1="0" x2="80" y2="114" stroke="black" strokeOpacity="1" strokeWidth="2" />
                             </svg>
@@ -104,7 +105,8 @@ export default function Events() {
                             <div data-event className="w-1/2 pl-5 flex flex-col items-center pt-[50px]">
                                 <img src="/sangeeth.png" className="w-auto h-16 sm:h-24 mb-1" />
                                 <p className="font-medium italic">Sangeeth</p>
-                                <p className="text-xl text-black/50">5:30pm</p>
+                                {/* <p className="text-xl text-black/50">5:30pm</p> */}
+                                <p className="text-xl text-black/50">Time TBD</p>
                             </div>
                         </div>
 
@@ -112,7 +114,8 @@ export default function Events() {
                             <div data-event className="w-1/2 pr-5 flex flex-col items-center">
                                 <img src="/first-dinner.png" className="w-auto h-16 sm:h-24 mb-1" />
                                 <p className="font-medium italic">Dinner</p>
-                                <p className="text-xl text-black/50">7:30pm</p>
+                                {/* <p className="text-xl text-black/50">7:30pm</p> */}
+                                <p className="text-xl text-black/50">Time TBD</p>
                                 <button onClick={() => openMenu("Sangeeth")} className="mt-2 text-lg border border-black/20 rounded-full font-medium hover:bg-black hover:text-white transition-all duration-300 cursor-pointer px-4 py-1">Menu</button>
                             </div>
                             <div data-circle className="absolute left-1/2 -translate-x-1/2 top-[45%] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
@@ -125,7 +128,8 @@ export default function Events() {
                         <div data-line className="absolute left-1/2 -translate-x-1/2 top-[166px] bottom-[90px] w-px bg-black origin-top" />
 
                         <div className="relative flex pb-4">
-                            <p data-date className="absolute whitespace-nowrap top-[40px] left-0">3<sup className="text-xs">rd</sup> May</p>
+                            {/* <p data-date className="absolute whitespace-nowrap top-[40px] left-0">3<sup className="text-xs">rd</sup> May</p> */}
+                            <p data-date className="absolute whitespace-nowrap top-[40px] left-0">TBD</p>
                             <svg data-dash className="absolute left-[80px] top-[52px]" width="80" height="114" fill="none">
                                 <line x1="0" y1="0" x2="80" y2="114" stroke="black" strokeOpacity="1" strokeWidth="2" />
                             </svg>
@@ -134,7 +138,8 @@ export default function Events() {
                             <div data-event className="w-1/2 pl-5 flex flex-col items-center pt-[50px]">
                                 <img src="/muhurtham.png" className="w-auto h-16 sm:h-24 mb-1" />
                                 <p className="font-medium italic">Muhurtham</p>
-                                <p className="text-xl text-black/50">11:57am</p>
+                                {/* <p className="text-xl text-black/50">11:57am</p> */}
+                                <p className="text-xl text-black/50">Time TBD</p>
                             </div>
                         </div>
 
@@ -142,7 +147,8 @@ export default function Events() {
                             <div data-event className="w-1/2 pr-5 flex flex-col items-center">
                                 <img src="/lunch.png" className="w-auto h-14 sm:h-20 mb-1" />
                                 <p className="font-medium italic">Lunch</p>
-                                <p className="text-xl text-black/50">12:45pm</p>
+                                {/* <p className="text-xl text-black/50">12:45pm</p> */}
+                                <p className="text-xl text-black/50">Time TBD</p>
                                 <button onClick={() => openMenu("Sadya")} className="mt-2 text-lg border border-black/20 rounded-full font-medium hover:bg-black hover:text-white transition-all duration-300 cursor-pointer px-4 py-1">Menu</button>
                             </div>
                             <div data-circle className="absolute left-1/2 -translate-x-1/2 top-[45%] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
@@ -155,7 +161,8 @@ export default function Events() {
                             <div data-event className="w-1/2 pl-5 flex flex-col items-center">
                                 <img src="/photos.png" className="w-auto h-16 sm:h-24 mb-1" />
                                 <p className="font-medium italic">Photos</p>
-                                <p className="text-xl text-black/50">1:30pm</p>
+                                {/* <p className="text-xl text-black/50">1:30pm</p> */}
+                                <p className="text-xl text-black/50">Time TBD</p>
                             </div>
                         </div>
 
@@ -163,7 +170,8 @@ export default function Events() {
                             <div data-event className="w-1/2 pr-5 flex flex-col items-center">
                                 <img src="/reception.png" className="w-auto h-24 sm:h-32 mb-1" />
                                 <p className="font-medium italic">Reception</p>
-                                <p className="text-xl text-black/50">7:30pm</p>
+                                {/* <p className="text-xl text-black/50">7:30pm</p> */}
+                                <p className="text-xl text-black/50">Time TBD</p>
                             </div>
                             <div data-circle className="absolute left-1/2 -translate-x-1/2 top-[45%] w-5 h-5 rounded-full bg-black z-10 border-4 border-white" />
                             <div className="w-1/2" />
@@ -175,7 +183,8 @@ export default function Events() {
                             <div data-event className="w-1/2 pl-5 flex flex-col items-center">
                                 <img src="/second-dinner.png" className="w-auto h-16 sm:h-24 mb-1" />
                                 <p className="font-medium italic">Dinner</p>
-                                <p className="text-xl text-black/50">8pm</p>
+                                {/* <p className="text-xl text-black/50">8pm</p> */}
+                                <p className="text-xl text-black/50">Time TBD</p>
                                 <button onClick={() => openMenu("Reception Dinner")} className="mt-2 text-lg border border-black/20 rounded-full font-medium hover:bg-black hover:text-white transition-all duration-300 cursor-pointer px-4 py-1">Menu</button>
                             </div>
                         </div>

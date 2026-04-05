@@ -6,7 +6,8 @@ import { Nav, ScrollReset } from "./nav";
 // Update with your names, date, venue, and OG image
 export const metadata: Metadata = {
   title: "Rahul & Sandra",
-  description: "Join us on our wedding on 3rd May 2026 at Chalakudy, Kerala.",
+  // description: "Join us on our wedding on 3rd May 2026 at Chalakudy, Kerala.",
+  description: "Join us on our wedding at Chalakudy, Kerala. Date TBD.",
   openGraph: {
     images: ["/plain-main.png"],
   },
