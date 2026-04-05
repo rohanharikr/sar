@@ -190,7 +190,7 @@ export default function Home() {
                 >
                     <span className="text-base sm:text-xl italic tracking-widest text-black/65">the wedding of</span>
                     <h1 className="text-4xl sm:text-5xl md:text-7xl mt-4 sm:mt-6">Rahul&nbsp;&nbsp;&nbsp;<span className="italic">&</span>&nbsp;&nbsp;&nbsp;Sandra</h1>
-                    <div className="my-8 sm:my-16 flex flex-row gap-4 sm:gap-10">
+                    {/* <div className="my-8 sm:my-16 flex flex-row gap-4 sm:gap-10">
                         {mounted ? (
                             <>
                                 <CountdownUnit value={time.days} label="days" />
@@ -199,7 +199,8 @@ export default function Home() {
                                 <CountdownUnit value={time.seconds} label="seconds" />
                             </>
                         ) : null}
-                    </div>
+                    </div> */}
+                    <p className="my-8 sm:my-16 text-2xl sm:text-4xl tracking-widest uppercase">Date TBD</p>
                 </div>
             </main>
         </div>
