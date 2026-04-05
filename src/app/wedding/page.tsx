@@ -20,7 +20,7 @@ export default function Wedding() {
                     invite you to join them in the celebration of their marriage
                 </p>
 
-                <p className="tracking-widest uppercase mt-12 opacity-0" style={{ animation: "fade-in-up 0.35s ease 0.35s forwards" }}>
+                <p className="tracking-widest mt-12 opacity-0" style={{ animation: "fade-in-up 0.35s ease 0.35s forwards" }}>
                     {/* Sunday 3<sup className="lowercase">rd</sup> May 2026 */}
                     Date TBD
                 </p>

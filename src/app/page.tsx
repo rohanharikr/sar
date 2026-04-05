@@ -200,7 +200,7 @@ export default function Home() {
                             </>
                         ) : null}
                     </div> */}
-                    <p className="my-8 sm:my-16 text-2xl sm:text-4xl tracking-widest uppercase">Date TBD</p>
+                    <p className="my-8 sm:my-16 text-2xl sm:text-4xl tracking-widest">Date TBD</p>
                 </div>
             </main>
         </div>
