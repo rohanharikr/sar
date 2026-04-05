@@ -68,6 +68,7 @@ export default function Home() {
         return () => clearInterval(id);
     }, []);
 
+    /* Confetti effect — commented out while wedding is postponed
     useEffect(() => {
         if (DISABLE_ANIMATIONS) return;
         const isZero = time.days === 0 && time.hours === 0 && time.minutes === 0 && time.seconds === 0;
@@ -75,19 +76,20 @@ export default function Home() {
             confettiFired.current = true;
             const duration = 5000;
             const end = Date.now() + duration;
+            const borderY = 20 / window.innerHeight; // fall from behind the top border
             const frame = () => {
                 confetti({
                     particleCount: 3,
                     angle: 60,
                     spread: 55,
-                    origin: { x: 0, y: 0 },
+                    origin: { x: 0, y: borderY },
                     colors: ['#F7CE76', '#BE8E2D', '#B14328'], // Gold, dark gold, red — match your theme
                 });
                 confetti({
                     particleCount: 3,
                     angle: 120,
                     spread: 55,
-                    origin: { x: 1, y: 0 },
+                    origin: { x: 1, y: borderY },
                     colors: ['#F7CE76', '#BE8E2D', '#B14328'], // Gold, dark gold, red — match your theme
                 });
                 if (Date.now() < end) requestAnimationFrame(frame);
@@ -95,6 +97,7 @@ export default function Home() {
             frame();
         }
     }, [time]);
+    */
 
     useEffect(() => {
         if (DISABLE_ANIMATIONS) return;
