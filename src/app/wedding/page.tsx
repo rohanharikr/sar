@@ -39,11 +39,11 @@ export default function Wedding() {
                     <img src="/location.png" className="mt-16 w-full max-w-sm rounded-sm" alt="Heartland Convention Center location" />
                 </a>
                 <p className="italic text-center tracking-widest leading-relaxed mt-6 opacity-0" style={{ animation: "fade-in-up 0.35s ease 0.68s forwards" }}>
-                    Heartland Convention Center, Chalakudy, Keralam
+                    Heartland Convention Center, Chalakudy, Kerala
                 </p>
                 <div className="flex gap-4 sm:gap-8 mt-6 uppercase text-sm tracking-widest text-black/65 underline opacity-0" style={{ animation: "fade-in-up 0.35s ease 0.76s forwards" }}>
                     <a href="https://maps.app.goo.gl/98ZJT5wKz2PSG6Mk7" target="_blank">Directions</a>
-                    <a href="https://www.keralatourism.org/" target="_blank">Explore Keralam</a>
+                    <a href="https://www.keralatourism.org/" target="_blank">Explore Kerala</a>
                 </div>
 
 
