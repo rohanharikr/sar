@@ -8,8 +8,7 @@ import confetti from "canvas-confetti";
 const DISABLE_ANIMATIONS = false;
 
 // Wedding date and time (with timezone) — used for the countdown timer
-// const TARGET = new Date("2026-05-03T11:57:00+05:30").getTime();
-const TARGET = 0; // TBD — wedding date postponed
+const TARGET = new Date("2026-07-12T11:57:00+05:30").getTime();
 
 function getTimeLeft() {
     const diff = Math.max(0, TARGET - Date.now());
@@ -68,7 +67,6 @@ export default function Home() {
         return () => clearInterval(id);
     }, []);
 
-    /* Confetti effect — commented out while wedding is postponed
     useEffect(() => {
         if (DISABLE_ANIMATIONS) return;
         const isZero = time.days === 0 && time.hours === 0 && time.minutes === 0 && time.seconds === 0;
@@ -97,7 +95,6 @@ export default function Home() {
             frame();
         }
     }, [time]);
-    */
 
     useEffect(() => {
         if (DISABLE_ANIMATIONS) return;
@@ -193,7 +190,7 @@ export default function Home() {
                 >
                     <span className="text-base sm:text-xl italic tracking-widest text-black/65">the wedding of</span>
                     <h1 className="text-4xl sm:text-5xl md:text-7xl mt-4 sm:mt-6">Rahul&nbsp;&nbsp;&nbsp;<span className="italic">&</span>&nbsp;&nbsp;&nbsp;Sandra</h1>
-                    {/* <div className="my-8 sm:my-16 flex flex-row gap-4 sm:gap-10">
+                    <div className="my-8 sm:my-16 flex flex-row gap-4 sm:gap-10">
                         {mounted ? (
                             <>
                                 <CountdownUnit value={time.days} label="days" />
@@ -202,8 +199,7 @@ export default function Home() {
                                 <CountdownUnit value={time.seconds} label="seconds" />
                             </>
                         ) : null}
-                    </div> */}
-                    <p className="my-8 sm:my-16 text-2xl sm:text-4xl tracking-widest">Date TBD</p>
+                    </div>
                 </div>
             </main>
         </div>

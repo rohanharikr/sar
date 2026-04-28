@@ -28,10 +28,8 @@ export default function FAQ() {
                         <div className="text-black/70 mt-1 text-lg sm:text-xl">
                             Yes! We&apos;re arranging coaches.
                             <ul className="list-disc list-inside mt-1">
-                                {/* <li>From Trivandrum (<a href="https://share.google/CyTsbzAzNwl7RQXHo" target="_blank" className="underline hover:text-black transition-colors">QRS Pongumoodu</a>) &middot; 2<sup className="text-xs align-super">nd</sup> May, 10:00 AM</li> */}
-                                <li>From Trivandrum (<a href="https://share.google/CyTsbzAzNwl7RQXHo" target="_blank" className="underline hover:text-black transition-colors">QRS Pongumoodu</a>) &middot; Date &amp; time TBD</li>
-                                {/* <li>From Mavelikara &middot; 3<sup className="text-xs align-super">rd</sup> May, 5:30 AM</li> */}
-                                <li>From Mavelikara &middot; Date &amp; time TBD</li>
+                                <li>From Trivandrum (<a href="https://share.google/CyTsbzAzNwl7RQXHo" target="_blank" className="underline hover:text-black transition-colors">QRS Pongumoodu</a>) &middot; 11<sup className="text-xs align-super">th</sup> July, 10:00 AM</li>
+                                <li>From Mavelikara &middot; 12<sup className="text-xs align-super">th</sup> July, 5:30 AM</li>
                             </ul>
                             <span className="text-black/40">Please arrive 15 minutes before departure &middot; Contact us below to reserve seats</span>
                         </div>
@@ -45,7 +43,7 @@ export default function FAQ() {
                             <br/>
                             Reception: Casual
                             <br/>
-                            <span className="text-black/40">May in Kerala is warm and humid (30&ndash;35&deg;C) &mdash; light,<br/>breathable fabrics recommended.</span>
+                            <span className="text-black/40">July in Kerala is warm and humid (30&ndash;35&deg;C) &mdash; light,<br/>breathable fabrics recommended.</span>
                         </p>
                     </div>
                     <div className="opacity-0" style={{ animation: "fade-in-up 0.35s ease 0.28s forwards" }}>
