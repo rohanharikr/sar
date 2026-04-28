@@ -96,7 +96,7 @@ export default function Events() {
 
                         <div className="relative flex pb-4">
                             <p data-date className="absolute whitespace-nowrap top-[40px] left-0">10<sup className="text-xs">th</sup> July</p>
-                            <svg data-dash className="absolute left-[95px] top-[52px]" width="65" height="114" fill="none">
+                            <svg data-dash className="absolute left-[80px] sm:left-[95px] top-[52px] w-[80px] sm:w-[65px]" width="65" height="114" fill="none">
                                 <line x1="0" y1="0" x2="65" y2="114" stroke="black" strokeOpacity="1" strokeWidth="2" />
                             </svg>
                             <div className="w-1/2" />
@@ -126,7 +126,7 @@ export default function Events() {
 
                         <div className="relative flex pb-4">
                             <p data-date className="absolute whitespace-nowrap top-[40px] left-0">12<sup className="text-xs">th</sup> July</p>
-                            <svg data-dash className="absolute left-[95px] top-[52px]" width="65" height="114" fill="none">
+                            <svg data-dash className="absolute left-[80px] sm:left-[95px] top-[52px] w-[80px] sm:w-[65px]" width="65" height="114" fill="none">
                                 <line x1="0" y1="0" x2="65" y2="114" stroke="black" strokeOpacity="1" strokeWidth="2" />
                             </svg>
                             <div className="w-1/2" />
