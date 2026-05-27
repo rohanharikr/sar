@@ -27,7 +27,7 @@ export default function FAQ() {
                         <p className="font-medium">Do you provide transportation from Trivandrum?</p>
                         <div className="text-black/70 mt-1 text-lg sm:text-xl">
                             Yes! We&apos;re arranging coaches.
-                            <ul className="list-disc list-inside mt-1">
+                            <ul className="list-disc list-outside mt-1 pl-6">
                                 <li>From Trivandrum (<a href="https://share.google/CyTsbzAzNwl7RQXHo" target="_blank" className="underline hover:text-black transition-colors">QRS Pongumoodu</a>) &middot; 11<sup className="text-xs align-super">th</sup> July, 10:00 AM</li>
                                 <li>From Mavelikara &middot; 12<sup className="text-xs align-super">th</sup> July, 5:30 AM</li>
                             </ul>
